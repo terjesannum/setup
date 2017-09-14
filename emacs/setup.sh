@@ -4,7 +4,8 @@ INSTALL_DIR=$HOME
 DIR=`cd $(dirname $0); pwd -P`
 
 mkdir -p $INSTALL_DIR/el
-ln -fs $DIR/init.el $INSTALL_DIR/el/init.el
+rm -f $INSTALL_DIR/el/init.el
+cp $DIR/init.el $INSTALL_DIR/el/init.el
 cat > $INSTALL_DIR/.emacs <<EOF
 (defvar ts-emacs-dir "$INSTALL_DIR/el" "Directory with emacs setup")
 (load-file (concat ts-emacs-dir "/init.el"))
