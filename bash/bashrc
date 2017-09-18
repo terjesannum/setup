@@ -50,14 +50,20 @@ alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 
 export PATH=$HOME/bin:$PATH:/opt/idea/bin
 
-if type brew &>/dev/null && test -r $(brew --prefix)/etc/bash_completion; then
-  . $(brew --prefix)/etc/bash_completion
+if type brew &>/dev/null && echo $BASH_VERSION | grep -q ^4 && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
+  . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
 if type kubectl &>/dev/null; then
   . <(kubectl completion bash)
   alias k=kubectl
   alias ks='kubectl -n kube-system'
+fi
+
+if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/completions/bash_completion.sh; then
+   . $HOME/lib/bash/github.com/complete-alias/completions/bash_completion.sh
+   complete -F _complete_alias k
+   complete -F _complete_alias ks
 fi
 
 

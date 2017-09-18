@@ -9,6 +9,6 @@ cp $DIR/bash_profile $HOME/.bash_profile
 cp $DIR/bashrc $HOME/.bashrc
 cp $DIR/inputrc $HOME/.inputrc
 
-
-
+github_clone_or_pull $INSTALL_DIR/lib/bash/github.com \
+                     https://github.com/cykerway/complete-alias.git
 
