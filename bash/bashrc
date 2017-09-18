@@ -1,0 +1,63 @@
+if [ -r /etc/bashrc ]; then
+. /etc/bashrc
+fi
+
+if [ -r $HOME/lib/bash/local.sh ]; then
+. $HOME/lib/bash/local.sh
+fi
+
+HISTFILESIZE=5000
+HISTSIZE=5000
+
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+export GREP_OPTIONS='--color=auto'
+
+if test $UID -eq 0; then
+  prompt_color=31
+elif test -n "$GDMSESSION" -o "$TERM_PROGRAM" = "Apple_Terminal"; then
+  prompt_color=32
+else
+  prompt_color=36
+fi
+PS1="\\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m\\n\\\$ "
+
+for git_prompt in \
+    /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh \
+    /usr/share/git-core/contrib/completion/git-prompt.sh \
+    ; do
+    if test -r $git_prompt; then
+        GIT_PROMPT=$git_prompt
+        break
+    fi
+done
+
+if test -n "$GIT_PROMPT"; then
+  . $GIT_PROMPT
+  GIT_PS1_SHOWDIRTYSTATE=1
+  GIT_PS1_SHOWSTASHSTATE=1
+  GIT_PS1_SHOWUNTRACKEDFILES=1
+  GIT_PS1_SHOWUPSTREAM=auto
+  PS1="\\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\$(__git_ps1 \" \\e[${prompt_color}m(%s)\")\\e[m\\n\\\$ "
+fi
+
+alias cd..='cd ..'
+alias influx='influx -host $INFLUX_HOST -database $INFLUX_DATABASE -precision rfc3339'
+
+alias docker-rm-all='docker rm -f $(docker ps -a -q)'
+alias docker-irm-all='docker rmi $(docker images -a -q)'
+alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+export PATH=$HOME/bin:$PATH:/opt/idea/bin
+
+if type brew &>/dev/null && test -r $(brew --prefix)/etc/bash_completion; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+if type kubectl &>/dev/null; then
+  . <(kubectl completion bash)
+  alias k=kubectl
+  alias ks='kubectl -n kube-system'
+fi
+
+

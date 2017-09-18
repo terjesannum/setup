@@ -1,0 +1,3 @@
+if test "/bin/bash" != "$SHELL" -a -x /bin/bash -a -r $HOME/.bash_profile; then
+  exec /bin/bash --login
+fi
