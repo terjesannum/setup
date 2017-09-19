@@ -62,8 +62,14 @@ fi
 
 if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/completions/bash_completion.sh; then
    . $HOME/lib/bash/github.com/complete-alias/completions/bash_completion.sh
-   complete -F _complete_alias k
-   complete -F _complete_alias ks
+   if type kubectl &>/dev/null; then
+      complete -F _complete_alias k
+      complete -F _complete_alias ks
+   fi
+fi
+
+if type minikube &>/dev/null; then
+   alias minikube-docker-env='eval $(minikube docker-env)'
 fi
 
 
