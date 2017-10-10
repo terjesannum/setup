@@ -1,3 +1,4 @@
-if [ -r ~/.bashrc ]; then
-. ~/.bashrc
+test -z "$BASH" && test -x /usr/bin/bash && exec /usr/bin/bash -l
+if test -r ~/.bashrc; then
+   . ~/.bashrc
 fi

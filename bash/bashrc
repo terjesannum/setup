@@ -15,7 +15,7 @@ export GREP_OPTIONS='--color=auto'
 
 if test $UID -eq 0; then
   prompt_color=31
-elif test -n "$GDMSESSION" -o "$TERM_PROGRAM" = "Apple_Terminal"; then
+elif test -n "$GDMSESSION" -o "$TERM_PROGRAM" = "Apple_Terminal" -o "$TERM_PROGRAM" = "iTerm.app"; then
   prompt_color=32
 else
   prompt_color=36
