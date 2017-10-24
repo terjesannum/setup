@@ -58,6 +58,7 @@ if type kubectl &>/dev/null; then
   echo $BASH_VERSION | grep -q ^4 && . <(kubectl completion bash)
   alias k=kubectl
   alias ks='kubectl -n kube-system'
+  alias kn='kubectl -n nais'
 fi
 
 if type helm &>/dev/null; then
