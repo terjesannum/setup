@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 INSTALL_DIR=$HOME
 DIR=`cd $(dirname $0); pwd -P`
