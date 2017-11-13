@@ -8,7 +8,10 @@
 (require 'restclient)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/go-mode.el"))
-(require 'go-mode-autoloads)
+(autoload 'go-mode "go-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(autoload 'gofmt-before-save "go-mode" nil t)
+(autoload 'godoc "go-mode" nil t)
 (add-hook 'go-mode-hook '(lambda ()
                            (setq tab-width 2)
                            (setq standard-indent 2)
