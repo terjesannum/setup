@@ -23,6 +23,7 @@ fi
 PS1="\\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m\\n\\\$ "
 
 for git_prompt in \
+    /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh \
     /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh \
     /usr/share/git-core/contrib/completion/git-prompt.sh \
     ; do
