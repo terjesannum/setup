@@ -58,8 +58,8 @@ fi
 if type kubectl &>/dev/null; then
   echo $BASH_VERSION | grep -q ^4 && . <(kubectl completion bash)
   alias k=kubectl
-  alias ks='kubectl -n kube-system'
-  alias kn='kubectl -n nais'
+  alias ks='kubectl --namespace kube-system'
+  alias kn='kubectl --namespace nais'
 fi
 
 if type helm &>/dev/null; then
@@ -71,6 +71,7 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
    if type kubectl &>/dev/null; then
       complete -F _complete_alias k
       complete -F _complete_alias ks
+      complete -F _complete_alias kn
    fi
 fi
 
