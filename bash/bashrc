@@ -62,6 +62,16 @@ if type kubectl &>/dev/null; then
   alias kn='kubectl --namespace nais'
 fi
 
+if type kubectx &>/dev/null; then
+  . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
+  alias kc=kubectx
+fi
+
+if type kubens &>/dev/null; then
+  . $HOME/lib/bash/github.com/kubectx/completion/kubens.bash
+  alias kns=kubens
+fi
+
 if type helm &>/dev/null; then
   echo $BASH_VERSION | grep -q ^4 && . <(helm completion bash)
 fi
@@ -72,6 +82,12 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
       complete -F _complete_alias k
       complete -F _complete_alias ks
       complete -F _complete_alias kn
+   fi
+   if type kubectx &>/dev/null; then
+      complete -F _complete_alias kc
+   fi
+   if type kubens &>/dev/null; then
+      complete -F _complete_alias kns
    fi
 fi
 

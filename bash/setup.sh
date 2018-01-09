@@ -10,5 +10,9 @@ cp $DIR/bashrc $HOME/.bashrc
 cp $DIR/inputrc $HOME/.inputrc
 
 github_clone_or_pull $INSTALL_DIR/lib/bash/github.com \
-                     https://github.com/cykerway/complete-alias.git
+                     https://github.com/cykerway/complete-alias.git \
+                     https://github.com/ahmetb/kubectx.git
 
+mkdir -p $HOME/bin
+ln -fs $INSTALL_DIR/lib/bash/github.com/kubectx/kubectx $HOME/bin/kubectx
+ln -fs $INSTALL_DIR/lib/bash/github.com/kubectx/kubens $HOME/bin/kubens
