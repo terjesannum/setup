@@ -129,3 +129,5 @@
 
 (when window-system
   (tool-bar-mode -1))
+
+(server-start)
