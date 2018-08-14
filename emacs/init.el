@@ -7,6 +7,12 @@
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/restclient.el"))
 (require 'restclient)
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/window-number"))
+(require 'window-number)
+(setq window-number-inactive-foreground (face-attribute 'mode-line :foreground)
+      window-number-inactive-background (face-attribute 'mode-line :background))
+(window-number-mode t)
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/go-mode.el"))
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))

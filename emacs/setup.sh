@@ -21,7 +21,8 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/jrblevin/markdown-mode.git \
     https://github.com/puppetlabs/puppet-syntax-emacs.git \
     https://github.com/pashky/restclient.el.git \
-    https://github.com/yoshiki/yaml-mode.git
+    https://github.com/yoshiki/yaml-mode.git \
+    https://github.com/nikolas/window-number
 
 
 
