@@ -141,4 +141,6 @@
   (tool-bar-mode -1)
   (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "dark cyan" "white"]))
 
+(setenv "PAGER" "cat")
+
 (server-start)
