@@ -138,6 +138,7 @@
       mac-command-modifier 'meta)
 
 (when window-system
-  (tool-bar-mode -1))
+  (tool-bar-mode -1)
+  (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "cyan" "white"]))
 
 (server-start)
