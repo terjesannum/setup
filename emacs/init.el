@@ -71,6 +71,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
+(when (getenv "VDI")
+  (setq x-super-keysym 'meta))
 (global-set-key (kbd "C-c g") 'goto-line)
 (global-set-key (kbd "C-c ;") 'comment-region)
 (global-set-key (kbd "C-c :") 'uncomment-region)
