@@ -142,5 +142,7 @@
   (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "dark cyan" "white"]))
 
 (setenv "PAGER" "cat")
+(require 'tramp)
+(setq tramp-default-method "ssh")
 
 (server-start)
