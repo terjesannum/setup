@@ -18,7 +18,7 @@ if test "$(uname -s)" = 'Linux'; then
    alias ls='ls --color=auto'
 fi
 
-if test "$TERM" = "dumb" -a -n "$INSIDE_EMACS"; then
+if test "$TERM" = "dumb" -a -n "$INSIDE_EMACS" -a -f $HOME/.terminfo/d/dumb-emacs-ansi; then
    export TERM=dumb-emacs-ansi
 fi
 
