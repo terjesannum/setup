@@ -146,6 +146,13 @@
 (setq tramp-default-method "ssh")
 (setq explicit-shell-file-name "/bin/bash")
 
+(defun ssh-shell (host)
+  (interactive "sHost: ")
+  (find-file (format "/ssh:%s:" host))
+  (let ((buffer (current-buffer)))
+    (shell (concat "ssh-" host))
+    (kill-buffer buffer)))
+
 (setq comint-input-ring-size 50000)
 (setq comint-buffer-maximum-size 100000)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
