@@ -144,5 +144,12 @@
 (setenv "PAGER" "cat")
 (require 'tramp)
 (setq tramp-default-method "ssh")
+(setq explicit-shell-file-name "/bin/bash")
 
+(setq comint-input-ring-size 50000)
+(setq comint-buffer-maximum-size 100000)
+(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+
+(savehist-mode 1)
+(winner-mode 1)
 (server-start)
