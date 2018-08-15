@@ -14,6 +14,10 @@ export COLORTERM=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export GREP_OPTIONS='--color=auto'
 
+if test "$(uname -s)" = 'Linux'; then
+   alias ls='ls --color=auto'
+fi
+
 if test "$TERM" = "dumb" -a -n "$INSIDE_EMACS"; then
    export TERM=dumb-emacs-ansi
 fi
