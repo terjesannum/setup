@@ -153,6 +153,10 @@
     (shell (concat "ssh-" host))
     (kill-buffer buffer)))
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
+(require 'bash-completion)
+(bash-completion-setup)
+
 (setq comint-input-ring-size 50000)
 (setq comint-buffer-maximum-size 100000)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
