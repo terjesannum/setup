@@ -157,6 +157,7 @@
 (require 'bash-completion)
 (bash-completion-setup)
 
+(setq shell-font-lock-keywords nil)
 (setq comint-input-ring-size 50000)
 (setq comint-buffer-maximum-size 100000)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
