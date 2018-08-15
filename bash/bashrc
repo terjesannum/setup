@@ -10,8 +10,13 @@ HISTFILESIZE=5000
 HISTSIZE=5000
 
 export CLICOLOR=1
+export COLORTERM=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export GREP_OPTIONS='--color=auto'
+
+if test "$TERM" = "dumb" -a -n "$INSIDE_EMACS"; then
+   export TERM=dumb-emacs-ansi
+fi
 
 if test $UID -eq 0; then
   prompt_color=31

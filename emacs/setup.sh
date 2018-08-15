@@ -3,6 +3,10 @@
 INSTALL_DIR=$HOME
 DIR=`cd $(dirname $0); pwd -P`
 
+if type tic >/dev/null 2>&1; then
+  tic $DIR/dumb-emacs-ansi.ti
+fi
+
 . $DIR/../lib/functions.sh
 mkdir -p $INSTALL_DIR/el
 rm -f $INSTALL_DIR/el/init.el
