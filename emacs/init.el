@@ -82,6 +82,9 @@
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
+(global-set-key (kbd "S-C-n") (lambda ()
+                                (interactive)
+                                (shell (generate-new-buffer-name "*shell*"))))
 
 (setq visible-bell t)
 
