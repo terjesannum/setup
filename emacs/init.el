@@ -1,5 +1,9 @@
 (add-to-list 'load-path ts-emacs-dir)
 
+(let ((local-settings (concat ts-emacs-dir "/local.el")))
+  (when (file-exists-p local-settings)
+    (load-library local-settings)))
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/dash.el"))
 (eval-after-load 'dash '(dash-enable-font-lock))
 (require 'dash)
@@ -152,12 +156,23 @@
 (require 'tramp)
 (setq tramp-default-method "ssh")
 (setq explicit-shell-file-name "/bin/bash")
+(when (boundp 'local-domains)
+  (dolist (domain local-domains)
+    (add-to-list 'tramp-default-proxies-alist
+                 (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:"))))
 
 (defun ssh-shell (host)
   (interactive "sHost: ")
   (find-file (format "/ssh:%s:" host))
   (let ((buffer (current-buffer)))
     (shell (concat "ssh-" host))
+    (kill-buffer buffer)))
+
+(defun sudo-shell (host)
+  (interactive "sHost: ")
+  (find-file (format "/sudo:%s:" host))
+  (let ((buffer (current-buffer)))
+    (shell (concat "sudo-" host))
     (kill-buffer buffer)))
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
