@@ -1,5 +1,7 @@
 (add-to-list 'load-path ts-emacs-dir)
 
+(defvar local-domains nil "List of local domains")
+
 (let ((local-settings (concat ts-emacs-dir "/local.el")))
   (when (file-exists-p local-settings)
     (load-library local-settings)))
