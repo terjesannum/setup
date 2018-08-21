@@ -157,7 +157,6 @@
 (setenv "PAGER" "cat")
 (require 'tramp)
 (setq tramp-default-method "ssh")
-(setq explicit-shell-file-name "/bin/bash")
 (dolist (domain local-domains)
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:")))
