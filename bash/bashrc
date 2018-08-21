@@ -21,6 +21,10 @@ if test "$(uname -s)" = 'Linux'; then
 fi
 
 if test -n "$INSIDE_EMACS"; then
+    export PAGER=cat
+    if type emacsclient &>/dev/null ; then
+        export EDITOR=emacsclient
+    fi
     if test -f $HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
         . $HOME/lib/bash/github.com/ealias/ealias
         ealias eman='man %*'
