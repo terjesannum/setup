@@ -55,6 +55,10 @@
 
 (load-file (concat ts-emacs-dir "/github.com/json-reformat/json-reformat.el"))
 
+(when (memq window-system '(mac ns x))
+  (load-file (concat ts-emacs-dir "/github.com/exec-path-from-shell/exec-path-from-shell.el"))
+  (exec-path-from-shell-initialize))
+
 (setq-default buffer-file-coding-system 'iso-8859-1-unix
               c-basic-offset 2
               js-indent-level 2
