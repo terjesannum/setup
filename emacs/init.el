@@ -158,10 +158,9 @@
 (require 'tramp)
 (setq tramp-default-method "ssh")
 (setq explicit-shell-file-name "/bin/bash")
-(when (boundp 'local-domains)
-  (dolist (domain local-domains)
-    (add-to-list 'tramp-default-proxies-alist
-                 (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:"))))
+(dolist (domain local-domains)
+  (add-to-list 'tramp-default-proxies-alist
+               (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:")))
 
 (defun ssh-shell (host)
   (interactive "sHost: ")
