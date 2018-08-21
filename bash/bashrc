@@ -1,3 +1,5 @@
+# -*- mode: shell-script; -*-
+
 if [ -r /etc/bashrc ]; then
 . /etc/bashrc
 fi
@@ -18,8 +20,17 @@ if test "$(uname -s)" = 'Linux'; then
    alias ls='ls --color=auto'
 fi
 
-if test "$TERM" = "dumb" -a -n "$INSIDE_EMACS" -a \( -f $HOME/.terminfo/d/dumb-emacs-ansi -o -f $HOME/.terminfo/64/dumb-emacs-ansi \); then
-   export TERM=dumb-emacs-ansi
+if test -n "$INSIDE_EMACS"; then
+    if test -f $HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
+        . $HOME/lib/bash/github.com/ealias/ealias
+        ealias eman='man %*'
+        ealias essh='ssh-shell %*'
+        ealias sussh='sudo-shell %*'
+        ealias ff='find-file %* t'
+    fi
+    if test "$TERM" = "dumb" -a \( -f $HOME/.terminfo/d/dumb-emacs-ansi -o -f $HOME/.terminfo/64/dumb-emacs-ansi \); then
+        export TERM=dumb-emacs-ansi
+    fi
 fi
 
 if test $UID -eq 0; then
