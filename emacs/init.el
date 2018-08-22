@@ -94,7 +94,8 @@
 (global-set-key (kbd "<end>") 'end-of-buffer)
 (global-set-key (kbd "S-C-n") (lambda ()
                                 (interactive)
-                                (shell (generate-new-buffer-name "*shell*"))))
+                                (let ((default-directory "~"))
+                                  (shell (generate-new-buffer-name "*shell*")))))
 
 (setq visible-bell t)
 
