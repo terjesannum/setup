@@ -190,4 +190,8 @@
 
 (savehist-mode 1)
 (winner-mode 1)
+
+(setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
+(ido-mode 'buffers)
+
 (server-start)
