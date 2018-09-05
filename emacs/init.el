@@ -193,6 +193,8 @@
 (require 'bash-completion)
 (bash-completion-setup)
 
+(require 'influx)
+
 (setq shell-font-lock-keywords nil)
 (setq comint-input-ring-size 50000)
 (setq comint-buffer-maximum-size 100000)

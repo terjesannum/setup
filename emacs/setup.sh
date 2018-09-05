@@ -9,8 +9,7 @@ fi
 
 . $DIR/../lib/functions.sh
 mkdir -p $INSTALL_DIR/el
-rm -f $INSTALL_DIR/el/init.el
-cp $DIR/init.el $INSTALL_DIR/el/init.el
+cp $DIR/*.el $INSTALL_DIR/el/
 cat > $INSTALL_DIR/.emacs <<EOF
 (defvar ts-emacs-dir "$INSTALL_DIR/el" "Directory with emacs setup")
 (load-file (concat ts-emacs-dir "/init.el"))
