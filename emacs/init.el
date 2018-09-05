@@ -179,6 +179,16 @@
     (shell (concat "sudo-" host))
     (kill-buffer buffer)))
 
+(add-hook 'comint-exec-hook
+          (lambda ()
+            (set-process-sentinel (get-buffer-process (current-buffer))
+                                  'shell-process-kill-buffer-sentinel)))
+
+(defun shell-process-kill-buffer-sentinel (process state)
+  (message "shell(%s): %s" (buffer-name) state)
+  (if (string-match "finished" state)
+      (kill-buffer (current-buffer))))
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
 (require 'bash-completion)
 (bash-completion-setup)
