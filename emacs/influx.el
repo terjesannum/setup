@@ -13,6 +13,9 @@
        (current-buffer)))
     (unless buffer
       (apply 'make-comint-in-buffer "Influx" buffer
-             influx-cli nil (list "-host" influx-host "-database" influx-database "-precision" influx-precision)))))
+             influx-cli nil (list "-host" influx-host "-database" influx-database "-precision" influx-precision))))
+  (setq comint-input-ring-file-name "~/.influx_history")
+  (comint-read-input-ring))
+
 
 (provide 'influx)
