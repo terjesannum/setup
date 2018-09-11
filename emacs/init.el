@@ -70,7 +70,7 @@
 (setq save-abbrevs 'silently)
 
 (defvar user-temporary-file-directory
-  (concat "/tmp/" user-login-name "/"))
+  (expand-file-name (concat user-emacs-directory "/" "autosaves" "/")))
 (make-directory user-temporary-file-directory t)
 (setq backup-by-copying t)
 (setq backup-directory-alist
