@@ -165,19 +165,26 @@
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:")))
 
+(defvar user-remote-shell-history-directory
+  (expand-file-name (concat user-emacs-directory "/" "shell-history" "/")))
+(make-directory user-remote-shell-history-directory t)
+
+(defun tramp-shell (method host)
+  (interactive "sHost: ")
+  (find-file (format "/%s:%s:" method host))
+  (let ((buffer (current-buffer)))
+    (shell (concat method "-" host))
+    (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" host "." method))
+    (comint-read-input-ring 'silent)
+    (kill-buffer buffer)))
+
 (defun ssh-shell (host)
   (interactive "sHost: ")
-  (find-file (format "/ssh:%s:" host))
-  (let ((buffer (current-buffer)))
-    (shell (concat "ssh-" host))
-    (kill-buffer buffer)))
+  (tramp-shell "ssh" host))
 
 (defun sudo-shell (host)
   (interactive "sHost: ")
-  (find-file (format "/sudo:%s:" host))
-  (let ((buffer (current-buffer)))
-    (shell (concat "sudo-" host))
-    (kill-buffer buffer)))
+  (tramp-shell "sudo" host))
 
 (add-hook 'comint-exec-hook
           (lambda ()
@@ -188,6 +195,20 @@
   (message "shell(%s): %s" (buffer-name) state)
   (if (string-match "finished" state)
       (kill-buffer (current-buffer))))
+
+(add-hook 'kill-buffer-hook
+          (lambda ()
+            (when (derived-mode-p 'comint-mode)
+              (comint-write-input-ring))))
+
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (loop for buffer in (buffer-list)
+                  do (progn
+                       (set-buffer buffer)
+                       (when (derived-mode-p 'comint-mode)
+                         (comint-write-input-ring))))))
+
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
 (require 'bash-completion)
