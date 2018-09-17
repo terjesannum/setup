@@ -133,4 +133,9 @@ if type minikube &>/dev/null; then
    alias minikube-docker-env='eval $(minikube docker-env)'
 fi
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+if test -d $HOME/perl5/lib/perl5; then
+    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+fi
 
