@@ -170,7 +170,7 @@
 (make-directory user-remote-shell-history-directory t)
 
 (defun tramp-shell (method host)
-  (interactive "sHost: ")
+  (interactive "sMethod: \nsHost: ")
   (find-file (format "/%s:%s:" method host))
   (let ((buffer (current-buffer)))
     (shell (concat method "-" host))
