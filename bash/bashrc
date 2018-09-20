@@ -68,7 +68,7 @@ fi
 
 alias cd..='cd ..'
 alias influx='influx -host $INFLUX_HOST -database $INFLUX_DATABASE -precision rfc3339'
-alias jssh='ssh -t $JUMP_HOST ssh'
+alias jssh='ssh -J $JUMPHOST'
 alias ec=emacsclient
 
 alias docker-rm-all='docker rm -f $(docker ps -a -q)'
