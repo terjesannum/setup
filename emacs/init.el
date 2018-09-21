@@ -1,5 +1,9 @@
 (add-to-list 'load-path ts-emacs-dir)
 
+(when window-system
+  (tool-bar-mode -1)
+  (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "dark cyan" "white"]))
+
 (defvar local-domains nil "List of local domains")
 
 (let ((local-settings (concat ts-emacs-dir "/local.el")))
@@ -150,10 +154,6 @@
 
 (setq mac-option-modifier nil
       mac-command-modifier 'meta)
-
-(when window-system
-  (tool-bar-mode -1)
-  (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "dark cyan" "white"]))
 
 (require 'shell)
 (define-key shell-mode-map (kbd "C-p") 'comint-previous-input)
