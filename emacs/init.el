@@ -221,6 +221,10 @@
 (setq comint-buffer-maximum-size 100000)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
+(setq comint-password-prompt-regexp
+      (concat comint-password-prompt-regexp
+              "\\|^Password (will be hidden):\\s *\\'"))
+
 (savehist-mode 1)
 (winner-mode 1)
 
