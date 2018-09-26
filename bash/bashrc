@@ -96,6 +96,7 @@ fi
 if type kubectl &>/dev/null; then
   echo $BASH_VERSION | grep -q ^4 && . <(kubectl completion bash)
   alias k=kubectl
+  alias kd='kubectl --namespace default'
   alias ks='kubectl --namespace kube-system'
   alias kn='kubectl --namespace nais'
 fi
