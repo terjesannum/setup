@@ -119,6 +119,7 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
    . $HOME/lib/bash/github.com/complete-alias/completions/bash_completion.sh
    if type kubectl &>/dev/null; then
       complete -F _complete_alias k
+      complete -F _complete_alias kd
       complete -F _complete_alias ks
       complete -F _complete_alias kn
    fi
