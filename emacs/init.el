@@ -2,7 +2,6 @@
 
 (when window-system
   (tool-bar-mode -1)
-  (setq ansi-color-names-vector ["black" "red" "sea green" "dark orange" "blue" "magenta" "dark cyan" "white"])
   (load-file (concat ts-emacs-dir "/github.com/cyberpunk-theme.el/cyberpunk-theme.el"))
   )
 
@@ -225,7 +224,8 @@
 
 (setq comint-password-prompt-regexp
       (concat comint-password-prompt-regexp
-              "\\|^Password (will be hidden):\\s *\\'"))
+              "\\|^Password (will be hidden):\\s *\\'"
+              "\\|^Password for [^:]+:\\s*\\'"))
 
 (savehist-mode 1)
 (winner-mode 1)
