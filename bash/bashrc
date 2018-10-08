@@ -89,6 +89,10 @@ for dir in \
     test -d $dir && export LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH
 done
 
+if test -d $HOME/inst/go; then
+    export PATH=$HOME/inst/go/bin:$PATH
+fi
+
 if type brew &>/dev/null && echo $BASH_VERSION | grep -q ^4 && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
   . $(brew --prefix)/share/bash-completion/bash_completion
 fi

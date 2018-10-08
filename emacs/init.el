@@ -27,12 +27,6 @@
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/go-mode.el"))
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-(autoload 'gofmt-before-save "go-mode" nil t)
-(autoload 'godoc "go-mode" nil t)
-(add-hook 'go-mode-hook '(lambda ()
-                           (setq tab-width 2)
-                           (setq standard-indent 2)
-                           (setq indent-tabs-mode nil)))
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/markdown-mode"))
 (autoload 'markdown-mode "markdown-mode" nil t)
