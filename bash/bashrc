@@ -93,6 +93,10 @@ if test -d $HOME/inst/go; then
     export PATH=$HOME/inst/go/bin:$PATH
 fi
 
+if test -d $HOME/inst/emacs; then
+    export PATH=$HOME/inst/emacs/bin:$PATH
+fi
+
 if type brew &>/dev/null && echo $BASH_VERSION | grep -q ^4 && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
   . $(brew --prefix)/share/bash-completion/bash_completion
 fi
