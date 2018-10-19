@@ -52,8 +52,6 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
 
-(load-file (concat ts-emacs-dir "/github.com/json-reformat/json-reformat.el"))
-
 (when (memq window-system '(mac ns x))
   (load-file (concat ts-emacs-dir "/github.com/exec-path-from-shell/exec-path-from-shell.el"))
   (exec-path-from-shell-initialize))

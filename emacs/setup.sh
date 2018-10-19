@@ -19,7 +19,6 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/spotify/dockerfile-mode.git \
     https://github.com/dominikh/go-mode.el.git \
     https://github.com/mooz/js2-mode.git \
-    https://github.com/gongo/json-reformat.git \
     https://github.com/Wilfred/logstash-conf.el.git \
     https://github.com/jrblevin/markdown-mode.git \
     https://github.com/puppetlabs/puppet-syntax-emacs.git \
