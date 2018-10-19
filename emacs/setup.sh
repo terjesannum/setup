@@ -28,4 +28,5 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/nikolas/window-number \
     https://github.com/szermatt/emacs-bash-completion.git \
     https://github.com/purcell/exec-path-from-shell.git \
-    https://github.com/n3mo/cyberpunk-theme.el.git
+    https://github.com/n3mo/cyberpunk-theme.el.git \
+    https://github.com/terjesannum/emacs-kubectx-mode-line.git

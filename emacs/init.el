@@ -221,6 +221,11 @@
               "\\|^Password (will be hidden):\\s *\\'"
               "\\|^Password for [^:]+:\\s*\\'"))
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode-line"))
+(require 'kubectx)
+(add-hook 'comint-output-filter-functions (lambda (string) (kubectx-update)))
+(kubectx-mode 1)
+
 (savehist-mode 1)
 (winner-mode 1)
 
