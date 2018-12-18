@@ -20,6 +20,14 @@ if test "$(uname -s)" = 'Linux'; then
    alias ls='ls --color=auto'
 fi
 
+export PATH=$HOME/bin:$PATH
+for dir in \
+    /opt/idea/bin \
+    /usr/local/opt/python/libexec/bin \
+    ; do
+    test -d $dir && export PATH=$dir:$PATH
+done
+
 if test -n "$INSIDE_EMACS"; then
     export PAGER=cat
     if type emacsclient &>/dev/null ; then
@@ -77,14 +85,6 @@ alias ec=emacsclient
 alias docker-rm-all='docker rm -f $(docker ps -a -q)'
 alias docker-irm-all='docker rmi $(docker images -a -q)'
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-
-export PATH=$HOME/bin:$PATH
-for dir in \
-    /opt/idea/bin \
-    /usr/local/opt/python/libexec/bin \
-    ; do
-    test -d $dir && export PATH=$dir:$PATH
-done
 
 for dir in \
     /usr/lib/oracle/12.2/client64/lib \
