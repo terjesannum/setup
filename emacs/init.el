@@ -54,6 +54,7 @@
 
 (when (memq window-system '(mac ns x))
   (load-file (concat ts-emacs-dir "/github.com/exec-path-from-shell/exec-path-from-shell.el"))
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
   (exec-path-from-shell-initialize))
 
 (setq-default buffer-file-coding-system 'iso-8859-1-unix
