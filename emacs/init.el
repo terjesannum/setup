@@ -180,6 +180,15 @@
   (interactive "sHost: ")
   (tramp-shell "sudo" host))
 
+(let ((tramp-remote-shell-executable "sh"))
+  (load-file (concat ts-emacs-dir "/github.com/kubernetes-tramp/kubernetes-tramp.el")))
+
+(defun pod-shell (pod)
+  (interactive
+   (list
+    (completing-read "Pod: " (kubernetes-tramp--running-containers))))
+  (tramp-shell "kubectl" pod))
+
 (add-hook 'comint-exec-hook
           (lambda ()
             (set-process-sentinel (get-buffer-process (current-buffer))
