@@ -1,5 +1,9 @@
 # -*- mode: shell-script; -*-
 
+if (echo $BASH_VERSION | grep -vq ^4) && test -x /usr/local/bin/bash && (/usr/local/bin/bash --version 2>&1 | head -1 | grep -q 'version 4'); then
+    exec /usr/local/bin/bash
+fi
+
 if [ -r /etc/bashrc ]; then
 . /etc/bashrc
 fi
