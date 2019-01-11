@@ -155,6 +155,8 @@
 
 (require 'tramp)
 (setq tramp-default-method "ssh")
+(when (file-executable-p "/bin/bash")
+  (setq explicit-shell-file-name "/bin/bash"))
 (dolist (domain local-domains)
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:")))
