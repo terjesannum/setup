@@ -1,4 +1,4 @@
-test -z "$BASH" && test -x /usr/bin/bash && exec /usr/bin/bash -l
-if test -r ~/.bashrc; then
-   . ~/.bashrc
+test -z "$BASH" && test -x /bin/bash && exec /bin/bash -l
+if test -n "$BASH" -a -r $HOME/.bashrc; then
+   . $HOME/.bashrc
 fi
