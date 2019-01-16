@@ -104,7 +104,7 @@
 
 (setq visible-bell t)
 
-(setq display-time-format "%a/%W %Y-%m-%d %H:%M")
+(setq display-time-format "%a/%V %Y-%m-%d %H:%M")
 (display-time)
 
 (global-hl-line-mode 1)
