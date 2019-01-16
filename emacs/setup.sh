@@ -30,4 +30,5 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/emacs-pe/docker-tramp.el.git \
     https://github.com/gruggiero/kubernetes-tramp.git \
     https://github.com/terjesannum/cyberpunk-theme.el.git \
-    https://github.com/terjesannum/emacs-kubectx-mode-line.git
+    https://github.com/terjesannum/emacs-kubectx-mode-line.git \
+    https://github.com/antonj/Highlight-Indentation-for-Emacs.git

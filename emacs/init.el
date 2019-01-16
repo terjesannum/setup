@@ -48,6 +48,9 @@
 (autoload 'yaml-mode "yaml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-mode))
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/Highlight-Indentation-for-Emacs"))
+(require 'highlight-indentation)
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/js2-mode"))
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
