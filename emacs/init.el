@@ -45,8 +45,12 @@
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/yaml-mode"))
-(autoload 'yaml-mode "yaml-mode" nil t)
+(require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-mode))
+
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/smart-shift"))
+(require 'smart-shift)
+(add-hook 'yaml-mode-hook 'smart-shift-mode)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/Highlight-Indentation-for-Emacs"))
 (require 'highlight-indentation)
@@ -247,6 +251,10 @@
 (kubectx-mode 1)
 
 (savehist-mode 1)
+
+(setq winner-dont-bind-my-keys t)
+(global-set-key (kbd "C-c u") 'winner-undo)
+(global-set-key (kbd "C-c r") 'winner-redo)
 (winner-mode 1)
 
 (setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
