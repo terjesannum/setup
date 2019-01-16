@@ -182,9 +182,15 @@
   (interactive "sHost: ")
   (tramp-shell "sudo" host))
 
+(load-file (concat ts-emacs-dir "/github.com/docker-tramp.el/docker-tramp.el"))
+(defun docker-shell (container)
+  (interactive
+   (list
+    (completing-read "Container: " (docker-tramp--running-containers))))
+  (tramp-shell "docker" container))
+
 (let ((tramp-remote-shell-executable "sh"))
   (load-file (concat ts-emacs-dir "/github.com/kubernetes-tramp/kubernetes-tramp.el")))
-
 (defun pod-shell (pod)
   (interactive
    (list
