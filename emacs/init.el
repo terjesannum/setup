@@ -251,6 +251,7 @@
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode-line"))
 (require 'kubectx)
+(setq kubectx-update-interval 1)
 (kubectx-mode 1)
 
 (savehist-mode 1)
