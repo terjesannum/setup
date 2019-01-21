@@ -62,6 +62,10 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-google-this"))
+(require 'google-this)
+(google-this-mode 1)
+
 (when (memq window-system '(mac ns x))
   (load-file (concat ts-emacs-dir "/github.com/exec-path-from-shell/exec-path-from-shell.el"))
   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
