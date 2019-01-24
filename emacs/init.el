@@ -65,6 +65,7 @@
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-google-this"))
 (require 'google-this)
 (google-this-mode 1)
+(global-set-key (kbd "C-c / .") 'browse-url)
 
 (when (memq window-system '(mac ns x))
   (load-file (concat ts-emacs-dir "/github.com/exec-path-from-shell/exec-path-from-shell.el"))
