@@ -21,7 +21,7 @@
 
 (defun tramp-shell (method host)
   (interactive "sMethod: \nsHost: ")
-  (run-hooks 'tramp-shell-hook)
+  (run-hook-with-args 'tramp-shell-hook method host)
   (find-file (format "/%s:%s:" method host))
   (let ((buffer (current-buffer)))
     (shell (concat method "-" host))
