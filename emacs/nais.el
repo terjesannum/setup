@@ -32,5 +32,9 @@
        ("-o" "StrictHostKeyChecking=no")))
     '(tramp-default-port 22))))
 
+(defun nais-shell (host)
+  (interactive "sHost: ")
+  (tramp-shell "nais" host))
+
 (provide 'nais)
 
