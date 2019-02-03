@@ -17,8 +17,11 @@
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote domain) "\\`root\\'" "/ssh:%h:")))
 
+(defvar tramp-shell-hook nil "Hook called before starting a tramp shell")
+
 (defun tramp-shell (method host)
   (interactive "sMethod: \nsHost: ")
+  (run-hooks 'tramp-shell-hook)
   (find-file (format "/%s:%s:" method host))
   (let ((buffer (current-buffer)))
     (shell (concat method "-" host))
