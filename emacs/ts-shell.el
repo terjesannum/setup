@@ -24,7 +24,7 @@
   (run-hook-with-args 'tramp-shell-hook method host)
   (find-file (format "/%s:%s:" method host))
   (let ((buffer (current-buffer)))
-    (shell (concat method "-" host))
+    (shell (generate-new-buffer-name (concat method "-" host)))
     (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" host "." method))
     (comint-read-input-ring 'silent)
     (kill-buffer buffer)))
