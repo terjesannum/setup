@@ -97,7 +97,7 @@
 
 (setq comint-password-prompt-regexp
       (concat comint-password-prompt-regexp
-              "\\|^Password (will be hidden):\\s *\\'"
+              "\\| (will be hidden):\\s *\\'"
               "\\|^Password for [^:]+:\\s*\\'"))
 
 (setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
