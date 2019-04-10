@@ -90,6 +90,11 @@ alias docker-rm-all='docker rm -f $(docker ps -a -q)'
 alias docker-irm-all='docker rmi $(docker images -a -q)'
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 
+if type shasum &>/dev/null; then
+    type sha1sum &>/dev/null || alias sha1sum='shasum -a 1'
+    type sha256sum &>/dev/null || alias sha256sum='shasum -a 256'
+fi
+
 for dir in \
     /usr/lib/oracle/12.2/client64/lib \
     ; do
