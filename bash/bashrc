@@ -54,7 +54,7 @@ fi
 
 if test $UID -eq 0; then
   prompt_color=31
-elif test -n "$GDMSESSION" -o `uname -s` == 'Darwin'; then
+elif test -n "$GDMSESSION" -o `uname -s` == 'Darwin' || uname -a | grep -q Microsoft; then
   prompt_color=32
 else
   prompt_color=36
