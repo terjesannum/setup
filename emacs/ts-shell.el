@@ -59,8 +59,7 @@
 
 (defun shell-process-kill-buffer-sentinel (process state)
   (message "shell(%s): %s" (buffer-name) state)
-  (if (string-match "finished" state)
-      (kill-buffer (current-buffer))))
+  (kill-buffer (current-buffer)))
 
 (add-hook 'kill-buffer-hook
           (lambda ()
