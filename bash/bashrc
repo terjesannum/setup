@@ -1,9 +1,5 @@
 # -*- mode: shell-script; -*-
 
-if (echo $BASH_VERSION | grep -vq ^4) && test -x /usr/local/bin/bash && (/usr/local/bin/bash --version 2>&1 | head -1 | grep -q 'version 4'); then
-    exec /usr/local/bin/bash
-fi
-
 if [ -r /etc/bashrc ]; then
 . /etc/bashrc
 fi
@@ -109,12 +105,12 @@ if test -d $HOME/inst/emacs; then
     export PATH=$HOME/inst/emacs/bin:$PATH
 fi
 
-if type brew &>/dev/null && echo $BASH_VERSION | grep -q ^4 && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
+if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
   . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
 if type kubectl &>/dev/null; then
-  echo $BASH_VERSION | grep -q ^4 && . <(kubectl completion bash)
+  . <(kubectl completion bash)
   alias k=kubectl
   alias kd='kubectl --namespace default'
   alias ks='kubectl --namespace kube-system'
@@ -132,7 +128,7 @@ if type kubens &>/dev/null; then
 fi
 
 if type helm &>/dev/null; then
-  echo $BASH_VERSION | grep -q ^4 && . <(helm completion bash)
+  . <(helm completion bash)
 fi
 
 if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
