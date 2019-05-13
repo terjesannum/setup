@@ -66,6 +66,12 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-scala-mode"))
+(autoload 'scala-mode "scala-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.s\\(cala\\|bt\\)\\'" . scala-mode))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-sbt-mode"))
+(require 'sbt-mode)
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-google-this"))
 (require 'google-this)
 (google-this-mode 1)
