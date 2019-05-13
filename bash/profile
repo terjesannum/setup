@@ -1,4 +1,5 @@
-test -z "$BASH" && test -x /bin/bash && exec /bin/bash -l
+test "$BASH" == "/bin/sh" && test -x /usr/local/bin/bash && exec /usr/local/bin/bash -l
+test "$BASH" == "/bin/sh" && test -x /bin/bash && exec /bin/bash -l
 if test -n "$BASH" -a -r $HOME/.bashrc; then
    . $HOME/.bashrc
 fi
