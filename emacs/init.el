@@ -122,13 +122,9 @@
 (setq show-paren-style 'expression)
 
 (defun spook-string ()
-  (replace-regexp-in-string 
-   "\n" " " 
-   (replace-regexp-in-string 
-    "^\n" "" 
-    (replace-regexp-in-string 
-     "\n$" "" 
-     (with-temp-buffer (spook) (buffer-string))))))
+  (mapconcat 'identity
+   (delete "" (split-string (with-temp-buffer (spook) (buffer-string)) "\n"))
+   " "))
 
 (defun url-decode-region (start end)
   "url decode region"
