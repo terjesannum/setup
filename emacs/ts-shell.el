@@ -77,7 +77,9 @@
 (global-set-key (kbd "S-C-n") (lambda ()
                                 (interactive)
                                 (let ((default-directory "~"))
-                                  (shell (generate-new-buffer-name "*shell*")))))
+                                  (shell (generate-new-buffer-name "*shell*"))
+                                  (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/localhost"))
+                                  (comint-read-input-ring 'silent))))
 
 (require 'shell)
 (define-key shell-mode-map (kbd "C-p") 'comint-previous-input)
