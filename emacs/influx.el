@@ -5,17 +5,11 @@
 
 (defun influx ()
   (interactive)
-  (let ((buffer (comint-check-proc "Influx")))
-    (pop-to-buffer-same-window
-     (if (or buffer (not (derived-mode-p 'comint-mode))
-             (comint-check-proc (current-buffer)))
-         (get-buffer-create (or buffer "*Influx*"))
-       (current-buffer)))
-    (unless buffer
-      (apply 'make-comint-in-buffer "Influx" buffer
-             influx-cli nil (list "-host" influx-host "-database" influx-database "-precision" influx-precision))))
+  (set-window-buffer nil (get-buffer-create "*Influx*"))
+  (unless (comint-check-proc "*Influx*")
+    (apply 'make-comint-in-buffer "Influx" nil
+           influx-cli nil (list "-host" influx-host "-database" influx-database "-precision" influx-precision)))
   (setq comint-input-ring-file-name "~/.influx_history")
   (comint-read-input-ring))
-
 
 (provide 'influx)
