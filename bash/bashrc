@@ -22,6 +22,7 @@ fi
 
 export PATH=$HOME/bin:$PATH
 for dir in \
+    /usr/local/opt/gnu-sed/libexec/gnubin \
     /opt/idea/bin \
     /usr/local/opt/python/libexec/bin \
     ; do
