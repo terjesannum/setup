@@ -156,7 +156,8 @@
 (setq mac-option-modifier nil
       mac-command-modifier 'meta)
 
-(require 'influx)
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-influxdb-mode"))
+(require 'influxdb-mode)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode-line"))
 (require 'kubectx)
