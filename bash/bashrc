@@ -132,6 +132,13 @@ if type helm &>/dev/null; then
   . <(helm completion bash)
 fi
 
+if test -r $GOOGLE_CLOUD_SDK_DIR/path.bash.inc; then
+    . $GOOGLE_CLOUD_SDK_DIR/path.bash.inc
+    if type _completion_loader &>/dev/null && test -r $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc; then
+        . $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc
+    fi
+fi
+
 if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
    . $HOME/lib/bash/github.com/complete-alias/bash_completion.sh
    if type kubectl &>/dev/null; then
