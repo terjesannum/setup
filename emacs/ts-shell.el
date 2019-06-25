@@ -19,13 +19,13 @@
 
 (defvar tramp-shell-hook nil "Hook called before starting a tramp shell")
 
-(defun tramp-shell (method host)
+(defun tramp-shell (method host &optional history-name)
   (interactive "sMethod: \nsHost: ")
   (run-hook-with-args 'tramp-shell-hook method host)
   (find-file (format "/%s:%s:" method host))
   (let ((buffer (current-buffer)))
     (shell (generate-new-buffer-name (concat method "-" host)))
-    (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" host "." method))
+    (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" (or history-name host) "." method))
     (comint-read-input-ring 'silent)
     (kill-buffer buffer)))
 
