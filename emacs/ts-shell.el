@@ -49,7 +49,7 @@
 
 (defun pod-owner-name (pod)
   (let ((owner (car (apply #'process-lines kubernetes-tramp-kubectl-executable (list "get" "pod" pod "-o" "jsonpath={.metadata.ownerReferences[].kind}")))))
-    (cond ((string= owner "ReplicaSet") (replace-regexp-in-string "-[0-9a-f]\\{10\\}-[0-9a-z]\\{5\\}$" "" pod))
+    (cond ((string= owner "ReplicaSet") (replace-regexp-in-string "-[0-9a-f]\\{8,10\\}-[0-9a-z]\\{5\\}$" "" pod))
           ((string= owner "DaemonSet") (replace-regexp-in-string "-[0-9a-z]\\{5\\}$" "" pod))
           (t pod))))
 
