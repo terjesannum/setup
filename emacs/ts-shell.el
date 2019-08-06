@@ -10,6 +10,7 @@
   (exec-path-from-shell-initialize))
 
 (require 'tramp)
+(setq tramp-histfile-override t)
 (setq tramp-default-method "ssh")
 (setq explicit-shell-file-name "sh")
 (setq explicit-sh-args '("-l"))
