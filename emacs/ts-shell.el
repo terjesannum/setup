@@ -29,20 +29,28 @@
     (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" (or history-name host) "." method))
     (comint-read-input-ring 'silent)))
 
-(defun ssh-shell (host)
-  (interactive "sHost: ")
-  (tramp-shell "ssh" host))
-
-(defun sudo-shell (host)
-  (interactive "sHost: ")
-  (tramp-shell "sudo" host))
-
-(load-file (concat ts-emacs-dir "/github.com/docker-tramp.el/docker-tramp.el"))
-(defun docker-shell (container)
+(defun ssh-shell (host &optional directory)
   (interactive
    (list
-    (completing-read "Container: " (docker-tramp--running-containers))))
-  (tramp-shell "docker" container))
+    (read-string "Host: ")
+    (and current-prefix-arg (read-string "Directory: " "/"))))
+  (tramp-shell "ssh" host nil directory))
+
+(defun sudo-shell (host &optional directory)
+  (interactive
+   (list
+    (read-string "Host: ")
+    (and current-prefix-arg (read-string "Directory: " "/"))))
+  (tramp-shell "sudo" host nil directory))
+
+(load-file (concat ts-emacs-dir "/github.com/docker-tramp.el/docker-tramp.el"))
+
+(defun docker-shell (container &optional directory)
+  (interactive
+   (list
+    (completing-read "Container: " (docker-tramp--running-containers))
+    (and current-prefix-arg (read-string "Directory: " "/"))))
+  (tramp-shell "docker" container nil directory))
 
 (let ((tramp-remote-shell-executable "sh"))
   (load-file (concat ts-emacs-dir "/github.com/kubernetes-tramp/kubernetes-tramp.el")))
