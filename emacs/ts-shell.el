@@ -22,7 +22,7 @@
 
 (defun tramp-shell (method host &optional history-name directory)
   (interactive "sMethod: \nsHost: ")
-  (run-hook-with-args 'tramp-shell-hook method host)
+  (run-hook-with-args 'tramp-shell-hook method host history-name directory)
   (let ((default-directory (format "/%s:%s:%s" method host (or directory ""))))
     (shell (generate-new-buffer-name (concat method "-" host)))
     (setq comint-input-ring (make-ring comint-input-ring-size))
