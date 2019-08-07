@@ -20,10 +20,10 @@
 
 (defvar tramp-shell-hook nil "Hook called before starting a tramp shell")
 
-(defun tramp-shell (method host &optional history-name)
+(defun tramp-shell (method host &optional history-name directory)
   (interactive "sMethod: \nsHost: ")
   (run-hook-with-args 'tramp-shell-hook method host)
-  (let ((default-directory (format "/%s:%s:" method host)))
+  (let ((default-directory (format "/%s:%s:%s" method host (or directory ""))))
     (shell (generate-new-buffer-name (concat method "-" host)))
     (setq comint-input-ring (make-ring comint-input-ring-size))
     (setq comint-input-ring-file-name (concat user-remote-shell-history-directory "/" (or history-name host) "." method))
@@ -54,11 +54,12 @@
           ((string= owner "StatefulSet") (replace-regexp-in-string "-[0-9]+$" "" pod))
           (t pod))))
 
-(defun pod-shell (pod)
+(defun pod-shell (pod &optional directory)
   (interactive
    (list
-    (completing-read "Pod: " (kubernetes-tramp--running-containers))))
-  (tramp-shell "kubectl" pod (pod-owner-name pod)))
+    (completing-read "Pod: " (kubernetes-tramp--running-containers))
+    (and current-prefix-arg (read-string "Directory: " "/"))))
+  (tramp-shell "kubectl" pod (pod-owner-name pod) directory))
 
 (add-hook 'comint-exec-hook
           (lambda ()
