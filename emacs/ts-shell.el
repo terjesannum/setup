@@ -45,12 +45,16 @@
 
 (load-file (concat ts-emacs-dir "/github.com/docker-tramp.el/docker-tramp.el"))
 
+(defun docker-image-name (id)
+  (let ((image (car (apply #'process-lines docker-tramp-docker-executable (list "inspect" "-f" "{{ .Config.Image }}" id)))))
+    (replace-regexp-in-string "/" "_" (car (split-string image "[@:]")))))
+
 (defun docker-shell (container &optional directory)
   (interactive
    (list
     (completing-read "Container: " (docker-tramp--running-containers))
     (and current-prefix-arg (read-string "Directory: " "/"))))
-  (tramp-shell "docker" container nil directory))
+  (tramp-shell "docker" container (docker-image-name container) directory))
 
 (let ((tramp-remote-shell-executable "sh"))
   (load-file (concat ts-emacs-dir "/github.com/kubernetes-tramp/kubernetes-tramp.el")))
