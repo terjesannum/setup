@@ -82,9 +82,6 @@ alias cd..='cd ..'
 if test ! -z $INFLUX_HOST; then
     alias influx='influx -host $INFLUX_HOST -database $INFLUX_DATABASE -precision rfc3339'
 fi
-if test ! -z $JUMPHOST; then
-    alias jssh='ssh -J $JUMPHOST'
-fi
 alias ec=emacsclient
 
 alias docker-rm-all='docker rm -f $(docker ps -a -q)'
