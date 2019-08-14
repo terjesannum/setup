@@ -174,3 +174,17 @@
 (ido-mode 'buffers)
 
 (server-start)
+
+(defvar ts-emacs-geometry nil "Emacs frame geometry: (width height x y)")
+
+(defun ts-emacs-set-frame-geometry (&optional geometry)
+  "Set emacs frame geometry"
+  (interactive)
+  (let ((geometry-list (or geometry ts-emacs-geometry)))
+    (when (and window-system geometry-list)
+      (set-frame-position (selected-frame) (nth 2 geometry-list) (nth 3 geometry-list))
+      (set-frame-size (selected-frame) (nth 0 geometry-list) (nth 1 geometry-list)))))
+
+(global-set-key (kbd "C-S-l") 'ts-emacs-set-frame-geometry)
+
+(ts-emacs-set-frame-geometry)
