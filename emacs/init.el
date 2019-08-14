@@ -180,7 +180,7 @@
 (defun ts-emacs-set-frame-geometry (&optional geometry)
   "Set emacs frame geometry"
   (interactive)
-  (let ((geometry-list (or geometry ts-emacs-geometry)))
+  (let ((geometry-list (or geometry (and (functionp ts-emacs-geometry) (funcall ts-emacs-geometry)) ts-emacs-geometry)))
     (when (and window-system geometry-list)
       (set-frame-position (selected-frame) (nth 2 geometry-list) (nth 3 geometry-list))
       (set-frame-size (selected-frame) (nth 0 geometry-list) (nth 1 geometry-list)))))
