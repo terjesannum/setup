@@ -61,6 +61,8 @@
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/copy-as-format"))
 (require 'copy-as-format)
+(global-set-key (kbd "C-c w s") 'copy-as-format-slack)
+(global-set-key (kbd "C-c w g") 'copy-as-format-github)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/js2-mode"))
 (autoload 'js2-mode "js2-mode" nil t)
