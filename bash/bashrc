@@ -62,6 +62,7 @@ for git_prompt in \
     /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh \
     /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh \
     /usr/share/git-core/contrib/completion/git-prompt.sh \
+    /usr/lib/git-core/git-sh-prompt \
     ; do
     if test -r $git_prompt; then
         GIT_PROMPT=$git_prompt
