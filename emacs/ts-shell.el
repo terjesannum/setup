@@ -41,7 +41,10 @@
    (list
     (read-string "Host: ")
     (and current-prefix-arg (read-string "Directory: " "/"))))
-  (tramp-shell "sudo" host nil directory))
+  (tramp-shell "sudo" host nil directory)
+  (process-send-string
+   (get-buffer-process (current-buffer))
+   "test -n \"$SUDO_USER\" -a -n \"$BASH\" && . /home/$SUDO_USER/.bashrc &>/dev/null\n"))
 
 (load-file (concat ts-emacs-dir "/github.com/docker-tramp.el/docker-tramp.el"))
 
