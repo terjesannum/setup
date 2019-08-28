@@ -122,8 +122,8 @@ if test -d $SETUP_HOME/inst/go; then
     add_path $SETUP_HOME/inst/go
 fi
 
-if test -d $SETUP_HOME/inst/emacs; then
-    add_path $SETUP_HOME/inst/emacs
+if test -d $SETUP_HOME/inst/emacs/bin; then
+    add_path $SETUP_HOME/inst/emacs/bin
 fi
 
 if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
