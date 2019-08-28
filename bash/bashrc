@@ -8,8 +8,18 @@ if test -z "$SETUP_HOME"; then
     SETUP_HOME=$HOME
 fi
 
+add_path() {
+    dir=$1
+    if [[ :$PATH: =~ :$dir: ]]; then
+        PATH="${PATH#$dir:}"        # remove if at start
+        PATH="${PATH%:$dir}"        # remove if at end
+        PATH="${PATH//:$dir:/:}"    # remove if in middle
+    fi
+    PATH="$dir:$PATH"               # add to start
+}
+
 if [ -r $SETUP_HOME/lib/bash/local.sh ]; then
-. $SETUP_HOME/lib/bash/local.sh
+    . $SETUP_HOME/lib/bash/local.sh
 fi
 
 HISTFILESIZE=5000
@@ -24,13 +34,13 @@ if test "$(uname -s)" = 'Linux'; then
    alias ls='ls --color=auto'
 fi
 
-export PATH=$SETUP_HOME/bin:$PATH
 for dir in \
+    $SETUP_HOME/bin \
     /usr/local/opt/gnu-sed/libexec/gnubin \
     /opt/idea/bin \
     /usr/local/opt/python/libexec/bin \
     ; do
-    test -d $dir && export PATH=$dir:$PATH
+    test -d $dir && add_path $dir
 done
 
 if test -n "$INSIDE_EMACS"; then
@@ -109,11 +119,11 @@ for dir in \
 done
 
 if test -d $SETUP_HOME/inst/go; then
-    export PATH=$SETUP_HOME/inst/go/bin:$PATH
+    add_path $SETUP_HOME/inst/go
 fi
 
 if test -d $SETUP_HOME/inst/emacs; then
-    export PATH=$SETUP_HOME/inst/emacs/bin:$PATH
+    add_path $SETUP_HOME/inst/emacs
 fi
 
 if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
