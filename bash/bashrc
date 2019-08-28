@@ -118,8 +118,8 @@ for dir in \
     test -d $dir && export LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH
 done
 
-if test -d $SETUP_HOME/inst/go; then
-    add_path $SETUP_HOME/inst/go
+if test -d $SETUP_HOME/inst/go/bin; then
+    add_path $SETUP_HOME/inst/go/bin
 fi
 
 if test -d $SETUP_HOME/inst/emacs/bin; then
