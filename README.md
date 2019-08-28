@@ -11,3 +11,9 @@ sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
 chsh -s /usr/local/bin/bash
 brew install bash-completion@2
 ```
+
+## Windows prerequisites
+
+* Install Linux subsystem
+* Upgrade emacs
+* Install VcXsrv
