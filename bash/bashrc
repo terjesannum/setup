@@ -4,8 +4,12 @@ if [ -r /etc/bashrc ]; then
 . /etc/bashrc
 fi
 
-if [ -r $HOME/lib/bash/local.sh ]; then
-. $HOME/lib/bash/local.sh
+if test -z "$SETUP_HOME"; then
+    SETUP_HOME=$HOME
+fi
+
+if [ -r $SETUP_HOME/lib/bash/local.sh ]; then
+. $SETUP_HOME/lib/bash/local.sh
 fi
 
 HISTFILESIZE=5000
@@ -20,7 +24,7 @@ if test "$(uname -s)" = 'Linux'; then
    alias ls='ls --color=auto'
 fi
 
-export PATH=$HOME/bin:$PATH
+export PATH=$SETUP_HOME/bin:$PATH
 for dir in \
     /usr/local/opt/gnu-sed/libexec/gnubin \
     /opt/idea/bin \
@@ -34,14 +38,14 @@ if test -n "$INSIDE_EMACS"; then
     if type emacsclient &>/dev/null ; then
         export EDITOR=emacsclient
     fi
-    if test -f $HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
-        . $HOME/lib/bash/github.com/ealias/ealias
+    if test -f $SETUP_HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
+        . $SETUP_HOME/lib/bash/github.com/ealias/ealias
         ealias eman='man %*'
         ealias essh='ssh-shell %*'
         ealias sussh='sudo-shell %*'
         ealias ff='find-file %* t'
     fi
-    if test "$TERM" = "dumb" -a \( -f $HOME/.terminfo/d/dumb-emacs-ansi -o -f $HOME/.terminfo/64/dumb-emacs-ansi \); then
+    if test "$TERM" = "dumb" -a \( -f $SETUP_HOME/.terminfo/d/dumb-emacs-ansi -o -f $SETUP_HOME/.terminfo/64/dumb-emacs-ansi \); then
         export TERM=dumb-emacs-ansi
     fi
     if type kubectl &>/dev/null; then
@@ -104,12 +108,12 @@ for dir in \
     test -d $dir && export LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH
 done
 
-if test -d $HOME/inst/go; then
-    export PATH=$HOME/inst/go/bin:$PATH
+if test -d $SETUP_HOME/inst/go; then
+    export PATH=$SETUP_HOME/inst/go/bin:$PATH
 fi
 
-if test -d $HOME/inst/emacs; then
-    export PATH=$HOME/inst/emacs/bin:$PATH
+if test -d $SETUP_HOME/inst/emacs; then
+    export PATH=$SETUP_HOME/inst/emacs/bin:$PATH
 fi
 
 if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
@@ -126,12 +130,12 @@ if type kubectl &>/dev/null; then
 fi
 
 if type kubectx &>/dev/null; then
-  . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
+  . $SETUP_HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
   alias kc=kubectx
 fi
 
 if type kubens &>/dev/null; then
-  . $HOME/lib/bash/github.com/kubectx/completion/kubens.bash
+  . $SETUP_HOME/lib/bash/github.com/kubectx/completion/kubens.bash
   alias kns=kubens
 fi
 
@@ -146,8 +150,8 @@ if test -r $GOOGLE_CLOUD_SDK_DIR/path.bash.inc; then
     fi
 fi
 
-if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
-   . $HOME/lib/bash/github.com/complete-alias/bash_completion.sh
+if type _completion_loader &>/dev/null && test -r $SETUP_HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
+   . $SETUP_HOME/lib/bash/github.com/complete-alias/bash_completion.sh
    if type kubectl &>/dev/null; then
       complete -F _complete_alias k
       complete -F _complete_alias kd
@@ -169,8 +173,8 @@ fi
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-if test -d $HOME/perl5/lib/perl5; then
-    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+if test -d $SETUP_HOME/perl5/lib/perl5; then
+    eval "$(perl -I$SETUP_HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
 
 if test -d /proc; then
