@@ -37,4 +37,6 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/sshaw/copy-as-format.git \
     https://github.com/Malabarba/emacs-google-this.git \
     https://github.com/ensime/emacs-sbt-mode.git \
-    https://github.com/ensime/emacs-scala-mode.git
+    https://github.com/ensime/emacs-scala-mode.git \
+    https://github.com/syohex/emacs-hcl-mode.git \
+    https://github.com/syohex/emacs-terraform-mode.git

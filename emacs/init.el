@@ -56,6 +56,10 @@
 (require 'smart-shift)
 (add-hook 'yaml-mode-hook 'smart-shift-mode)
 
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-hcl-mode"))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-terraform-mode"))
+(require 'terraform-mode)
+
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/Highlight-Indentation-for-Emacs"))
 (require 'highlight-indentation)
 
