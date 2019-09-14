@@ -32,6 +32,7 @@ github_clone_or_pull $INSTALL_DIR/el/github.com \
     https://github.com/terjesannum/cyberpunk-theme.el.git \
     https://github.com/terjesannum/emacs-kubectx-mode-line.git \
     https://github.com/terjesannum/emacs-influxdb-mode.git \
+    https://github.com/terjesannum/emacs-shell.git \
     https://github.com/antonj/Highlight-Indentation-for-Emacs.git \
     https://github.com/hbin/smart-shift.git \
     https://github.com/sshaw/copy-as-format.git \

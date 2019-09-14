@@ -13,7 +13,12 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
-(require 'ts-shell)
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/exec-path-from-shell"))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/docker-tramp.el"))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/kubernetes-tramp"))
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-shell"))
+(require 'emacs-shell)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/dash.el"))
 (eval-after-load 'dash '(dash-enable-font-lock))
@@ -177,6 +182,7 @@
 (global-set-key (kbd "C-c r") 'winner-redo)
 (winner-mode 1)
 
+(setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
 (ido-mode 'buffers)
 
 (server-start)
