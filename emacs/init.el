@@ -200,3 +200,8 @@
 (global-set-key (kbd "C-S-l") 'ts-emacs-set-frame-geometry)
 
 (ts-emacs-set-frame-geometry)
+
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (with-current-buffer (get-buffer "*Messages*")
+              (write-file (concat user-emacs-directory "/messages")))))
