@@ -172,7 +172,7 @@
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-gcloud-mode-line"))
 (require 'gcloud-mode-line)
-(setq gcloud-update-interval 1)
+(setq gcloud-update-interval 10)
 (gcloud-mode 1)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode-line"))
