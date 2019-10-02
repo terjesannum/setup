@@ -84,6 +84,7 @@
 (require 'sbt-mode)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-google-this"))
+(setq google-this-modeline-indicator nil)
 (require 'google-this)
 (google-this-mode 1)
 (global-set-key (kbd "C-c / .") 'browse-url)
