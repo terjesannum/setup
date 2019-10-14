@@ -188,6 +188,11 @@
 (global-set-key (kbd "C-c r") 'winner-redo)
 (winner-mode 1)
 
+(defun set-selective-display-at-indent ()
+  (interactive)
+  (set-selective-display (+ 1 (current-column))))
+(global-set-key (kbd "C-c $") 'set-selective-display-at-indent)
+
 (setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
 (ido-mode 'buffers)
 
