@@ -82,6 +82,7 @@ function __prompt_exit_code {
 
 base_prompt="\\e[0;33m[\\t]\\e[m\$(__prompt_exit_code) \\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m"
 PS1="${base_prompt}\\n\\\$ "
+PS2="> "
 
 for git_prompt in \
     /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh \
