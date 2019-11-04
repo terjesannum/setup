@@ -70,7 +70,18 @@ elif test -n "$GDMSESSION" -o `uname -s` = 'Darwin' || uname -a | grep -q Micros
 else
   prompt_color=36
 fi
-PS1="\\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m\\n\\\$ "
+
+function __prompt_exit_code {
+    local r=$?
+    if test "$r" = "0"; then
+        echo -e "\\e[0;32m[0]\\e[m"
+    else
+        echo -e "\\e[0;31m[$r]\\e[m"
+    fi
+}
+
+base_prompt="\\e[0;33m[\\t]\\e[m\$(__prompt_exit_code) \\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m"
+PS1="${base_prompt}\\n\\\$ "
 
 for git_prompt in \
     /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh \
@@ -90,7 +101,7 @@ if test -n "$GIT_PROMPT"; then
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
   GIT_PS1_SHOWUPSTREAM=auto
-  PS1="\\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\$(__git_ps1 \" \\e[${prompt_color}m(%s)\")\\e[m\\n\\\$ "
+  PS1="${base_prompt}\$(__git_ps1 \" \\e[${prompt_color}m(%s)\")\\e[m\\n\\\$ "
 fi
 
 alias cd..='cd ..'
