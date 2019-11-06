@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-INSTALL_DIR=$HOME
 DIR=`cd $(dirname $0); pwd -P`
-
 . $DIR/../lib/functions.sh
-mkdir -p $INSTALL_DIR/el
-cp $DIR/*.el $INSTALL_DIR/el/
-cat > $INSTALL_DIR/.emacs <<EOF
-(defvar ts-emacs-dir "$INSTALL_DIR/el" "Directory with emacs setup")
-(load-file (concat ts-emacs-dir "/init.el"))
-EOF
-github_clone_or_pull $INSTALL_DIR/el/github.com \
+
+ln -fs $DIR/dotemacs $HOME/.emacs
+mkdir -p $HOME/el
+ln -fs $DIR/init.el $HOME/el/init.el
+
+github_clone_or_pull $HOME/el/github.com \
     https://github.com/magnars/dash.el.git \
     https://github.com/spotify/dockerfile-mode.git \
     https://github.com/dominikh/go-mode.el.git \

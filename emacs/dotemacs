@@ -1,0 +1,3 @@
+; # -*- mode: emacs-lisp; -*-
+(defvar ts-emacs-dir (expand-file-name "~/el") "Directory with emacs setup")
+(load-file (concat ts-emacs-dir "/init.el"))
