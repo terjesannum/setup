@@ -45,9 +45,6 @@ if test -n "$GIT_PROMPT"; then
   PS1="${base_prompt}\$(__git_ps1 \" \\e[${prompt_color}m(%s)\")\\e[m\\n\\\$ "
 fi
 
-HISTFILESIZE=5000
-HISTSIZE=5000
-
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -60,7 +57,10 @@ alias ls='ls --color=auto'
 alias cd..='cd ..'
 
 test -r $HOME/.bashrc.emacshost && . $HOME/.bashrc.emacshost
-test -n "$INSIDE_EMACS" && export PAGER=cat
+if test -n "$INSIDE_EMACS"; then
+    export PAGER=cat
+    unset HISTFILE
+fi
 
 if type docker &>/dev/null; then
     alias docker-rm-all='docker rm -f $(docker ps -a -q)'
