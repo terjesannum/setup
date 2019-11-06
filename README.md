@@ -6,6 +6,7 @@ Misc setup
 
 ```sh
 brew install gnu-sed
+brew install coreutils
 brew install bash
 sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
 chsh -s /usr/local/bin/bash
