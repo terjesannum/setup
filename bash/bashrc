@@ -55,10 +55,7 @@ export CLICOLOR=1
 export COLORTERM=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias grep='grep --color=auto'
-
-if test "$(uname -s)" = 'Linux'; then
-   alias ls='ls --color=auto'
-fi
+alias ls='ls --color=auto'
 
 alias cd..='cd ..'
 
