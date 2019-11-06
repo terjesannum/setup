@@ -100,9 +100,6 @@ if test -n "$INSIDE_EMACS"; then
         ealias sussh='sudo-shell %*'
         ealias ff='find-file %* t'
     fi
-    if test "$TERM" = "dumb" -a \( -f $HOME/.terminfo/d/dumb-emacs-ansi -o -f $HOME/.terminfo/64/dumb-emacs-ansi \); then
-        export TERM=dumb-emacs-ansi
-    fi
     if type kubectl &>/dev/null; then
         export PROMPT_COMMAND="emacsclient -e '(kubectx-update)' &>/dev/null"
     fi
