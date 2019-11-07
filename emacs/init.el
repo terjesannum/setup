@@ -176,9 +176,9 @@
 (setq gcloud-update-interval 10)
 (gcloud-mode 1)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode-line"))
-(require 'kubectx)
-(setq kubectx-update-interval 1)
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode"))
+(require 'kubectx-mode)
+(setq kubectx-mode-update-interval 1)
 (kubectx-mode 1)
 
 (savehist-mode 1)
