@@ -23,7 +23,7 @@ github_clone_or_pull $HOME/el/github.com \
     https://github.com/emacs-pe/docker-tramp.el.git \
     https://github.com/gruggiero/kubernetes-tramp.git \
     https://github.com/terjesannum/cyberpunk-theme.el.git \
-    https://github.com/terjesannum/emacs-gcloud-mode-line.git \
+    https://github.com/terjesannum/emacs-gcloud-mode.git \
     https://github.com/terjesannum/emacs-kubectx-mode.git \
     https://github.com/terjesannum/emacs-influxdb-mode.git \
     https://github.com/terjesannum/emacs-shell.git \

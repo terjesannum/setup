@@ -171,14 +171,14 @@
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-influxdb-mode"))
 (require 'influxdb-mode)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-gcloud-mode-line"))
-(require 'gcloud-mode-line)
-(setq gcloud-update-interval 10)
+(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-gcloud-mode"))
+(require 'gcloud-mode)
+(setq gcloud-mode-mode-line-update-interval 10)
 (gcloud-mode 1)
 
 (add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode"))
 (require 'kubectx-mode)
-(setq kubectx-mode-update-interval 1)
+(setq kubectx-mode-mode-line-update-interval 1)
 (kubectx-mode 1)
 
 (savehist-mode 1)
