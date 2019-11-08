@@ -1,89 +1,87 @@
-(add-to-list 'load-path ts-emacs-dir)
-
 (when window-system
   (tool-bar-mode -1)
-  (load-file (concat ts-emacs-dir "/github.com/cyberpunk-theme.el/cyberpunk-theme.el"))
+  (load-file (concat user-emacs-directory "/github.com/cyberpunk-theme.el/cyberpunk-theme.el"))
   )
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq save-abbrevs 'silently)
 
-(let ((local-settings (concat ts-emacs-dir "/local.el")))
+(let ((local-settings (expand-file-name (concat user-emacs-directory "/local.el"))))
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-bash-completion"))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/exec-path-from-shell"))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/docker-tramp.el"))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/kubernetes-tramp"))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-shell"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/exec-path-from-shell"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/docker-tramp.el"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/kubernetes-tramp"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/dash.el"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/dash.el"))
 (eval-after-load 'dash '(dash-enable-font-lock))
 (require 'dash)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/restclient.el"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/restclient.el"))
 (require 'restclient)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/window-number"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/window-number"))
 (require 'window-number)
 (setq window-number-inactive-foreground (face-attribute 'mode-line :foreground)
       window-number-inactive-background (face-attribute 'mode-line :background))
 (window-number-mode t)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/go-mode.el"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/go-mode.el"))
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/markdown-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/markdown-mode"))
 (autoload 'markdown-mode "markdown-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/dockerfile-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/dockerfile-mode"))
 (autoload 'dockerfile-mode "dockerfile-mode" nil t)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/logstash-conf.el"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/logstash-conf.el"))
 (autoload 'logstash-conf-mode "logstash-conf" nil t)
 (add-to-list 'auto-mode-alist '("logstash.*\\.conf\\'" . logstash-conf-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/puppet-syntax-emacs"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/puppet-syntax-emacs"))
 (autoload 'puppet-mode "puppet-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/yaml-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/yaml-mode"))
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/smart-shift"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/smart-shift"))
 (require 'smart-shift)
 (add-hook 'yaml-mode-hook 'smart-shift-mode)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-hcl-mode"))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-terraform-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-hcl-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-terraform-mode"))
 (require 'terraform-mode)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/Highlight-Indentation-for-Emacs"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/Highlight-Indentation-for-Emacs"))
 (require 'highlight-indentation)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/copy-as-format"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/copy-as-format"))
 (require 'copy-as-format)
 (global-set-key (kbd "C-c w s") 'copy-as-format-slack)
 (global-set-key (kbd "C-c w g") 'copy-as-format-github)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/js2-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/js2-mode"))
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-scala-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-scala-mode"))
 (autoload 'scala-mode "scala-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.s\\(cala\\|bt\\)\\'" . scala-mode))
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-sbt-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-sbt-mode"))
 (require 'sbt-mode)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-google-this"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-google-this"))
 (setq google-this-modeline-indicator nil)
 (require 'google-this)
 (google-this-mode 1)
@@ -168,15 +166,15 @@
 (setq mac-option-modifier nil
       mac-command-modifier 'meta)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-influxdb-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-influxdb-mode"))
 (require 'influxdb-mode)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-gcloud-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
 (setq gcloud-mode-mode-line-update-interval 10)
 (gcloud-mode 1)
 
-(add-to-list 'load-path (concat ts-emacs-dir "/github.com/emacs-kubectx-mode"))
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-kubectx-mode"))
 (require 'kubectx-mode)
 (setq kubectx-mode-mode-line-update-interval 1)
 (kubectx-mode 1)

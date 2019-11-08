@@ -3,11 +3,10 @@
 DIR=`cd $(dirname $0); pwd -P`
 . $DIR/../lib/functions.sh
 
-ln -fs $DIR/dotemacs $HOME/.emacs
-mkdir -p $HOME/el
-ln -fs $DIR/init.el $HOME/el/init.el
+mkdir -p $HOME/.emacs.d/github.com
+ln -fs $DIR/init.el $HOME/.emacs.d/init.el
 
-github_clone_or_pull $HOME/el/github.com \
+github_clone_or_pull $HOME/.emacs.d/github.com \
     https://github.com/magnars/dash.el.git \
     https://github.com/spotify/dockerfile-mode.git \
     https://github.com/dominikh/go-mode.el.git \
