@@ -2,6 +2,29 @@
 # Generic bashrc, this will be sourced on all host. Use bashrc.emacshost for setup not needed on remote hosts, pods etc.
 
 test -r /etc/bashrc && . /etc/bashrc
+test -r $HOME/lib/bash/local.sh && . $HOME/lib/bash/local.sh
+
+add_path() {
+    dir=$1
+    if [[ :$PATH: =~ :$dir: ]]; then
+        PATH="${PATH#$dir:}"        # remove if at start
+        PATH="${PATH%:$dir}"        # remove if at end
+        PATH="${PATH//:$dir:/:}"    # remove if in middle
+    fi
+    PATH="$dir:$PATH"               # add to start
+}
+
+for dir in \
+    $HOME/bin \
+    /usr/local/opt/gnu-sed/libexec/gnubin \
+    /usr/local/opt/coreutils/libexec/gnubin \
+    /opt/idea/bin \
+    /usr/local/opt/python/libexec/bin \
+    $HOME/inst/go/bin \
+    $HOME/inst/emacs/bin \
+    ; do
+    test -d $dir && add_path $dir
+done
 
 if test $UID -eq 0; then
   prompt_color=31
@@ -56,10 +79,86 @@ alias ls='ls --color=auto'
 
 alias cd..='cd ..'
 
-test -r $HOME/.bashrc.emacshost && . $HOME/.bashrc.emacshost
+if type shasum &>/dev/null; then
+    type sha1sum &>/dev/null || alias sha1sum='shasum -a 1'
+    type sha256sum &>/dev/null || alias sha256sum='shasum -a 256'
+fi
+
+for dir in \
+    /usr/lib/oracle/12.2/client64/lib \
+    ; do
+    test -d $dir && export LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH
+done
+
+if test ! -z $INFLUX_HOST; then
+    alias influx='influx -host $INFLUX_HOST -database $INFLUX_DATABASE -precision rfc3339'
+fi
+
+if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
+  . $(brew --prefix)/share/bash-completion/bash_completion
+fi
+
+if type minikube &>/dev/null; then
+   alias minikube-docker-env='eval $(minikube docker-env)'
+fi
+
+if type kubectx &>/dev/null; then
+  . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
+  alias kc=kubectx
+fi
+
+if type kubens &>/dev/null; then
+  . $HOME/lib/bash/github.com/kubectx/completion/kubens.bash
+  alias kns=kubens
+fi
+
+if type helm &>/dev/null; then
+  . <(helm completion bash)
+fi
+
+if test -r $GOOGLE_CLOUD_SDK_DIR/path.bash.inc; then
+    . $GOOGLE_CLOUD_SDK_DIR/path.bash.inc
+    if type _completion_loader &>/dev/null && test -r $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc; then
+        . $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc
+    fi
+fi
+
+if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
+   . $HOME/lib/bash/github.com/complete-alias/bash_completion.sh
+   if type kubectl &>/dev/null; then
+      complete -F _complete_alias k
+      complete -F _complete_alias kd
+      complete -F _complete_alias ks
+      complete -F _complete_alias kn
+      complete -F _complete_alias ki
+   fi
+   if type kubectx &>/dev/null; then
+      complete -F _complete_alias kc
+   fi
+   if type kubens &>/dev/null; then
+      complete -F _complete_alias kns
+   fi
+fi
+
+if test -d $HOME/perl5/lib/perl5; then
+    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+fi
+
 if test -n "$INSIDE_EMACS"; then
     export PAGER=cat
     unset HISTFILE
+    if type emacsclient &>/dev/null ; then
+        export EDITOR=emacsclient
+    fi
+    if test -f $HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
+        . $HOME/lib/bash/github.com/ealias/ealias
+        ealias essh='ssh-shell %*'
+        ealias sussh='sudo-shell %*'
+        ealias ff='find-file %* t'
+    fi
+    if type kubectl &>/dev/null; then
+        export PROMPT_COMMAND="emacsclient -e '(kubectx-mode-mode-line-update)' &>/dev/null"
+    fi
 fi
 
 if type docker &>/dev/null; then

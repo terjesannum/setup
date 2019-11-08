@@ -7,7 +7,6 @@ ln -fs $DIR/profile $HOME/.profile
 ln -fs $DIR/bash_profile $HOME/.bash_profile
 ln -fs $DIR/inputrc $HOME/.inputrc
 ln -fs $DIR/bashrc $HOME/.bashrc
-ln -fs $DIR/bashrc.emacshost $HOME/.bashrc.emacshost
 
 github_clone_or_pull $HOME/lib/bash/github.com \
                      https://github.com/cykerway/complete-alias.git \
