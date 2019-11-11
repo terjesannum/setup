@@ -27,11 +27,12 @@ for dir in \
 done
 
 if test $UID -eq 0; then
-  prompt_color=31
+    prompt_color=31
 elif test -n "$GDMSESSION" -o `uname -s` = 'Darwin' || uname -a | grep -q Microsoft; then
-  prompt_color=32
+    prompt_color=32
+    local_shell=1
 else
-  prompt_color=36
+    prompt_color=36
 fi
 
 __prompt_exit_code() {
@@ -147,17 +148,17 @@ fi
 if test -n "$INSIDE_EMACS"; then
     export PAGER=cat
     unset HISTFILE
-    if type emacsclient &>/dev/null ; then
+    if test -n "$local_shell" && type emacsclient &>/dev/null ; then
         export EDITOR=emacsclient
-    fi
-    if test -f $HOME/lib/bash/github.com/ealias/ealias && type emacsclient &>/dev/null ; then
-        . $HOME/lib/bash/github.com/ealias/ealias
-        ealias essh='ssh-shell %*'
-        ealias sussh='sudo-shell %*'
-        ealias ff='find-file %* t'
-    fi
-    if type kubectl &>/dev/null; then
-        export PROMPT_COMMAND="emacsclient -e '(kubectx-mode-mode-line-update)' &>/dev/null"
+        if test -f $HOME/lib/bash/github.com/ealias/ealias; then
+            . $HOME/lib/bash/github.com/ealias/ealias
+            ealias essh='ssh-shell %*'
+            ealias sussh='sudo-shell %*'
+            ealias ff='find-file %* t'
+        fi
+        if type kubectl &>/dev/null; then
+            export PROMPT_COMMAND="emacsclient -e '(kubectx-mode-mode-line-update)' &>/dev/null"
+        fi
     fi
 fi
 
