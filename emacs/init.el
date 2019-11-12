@@ -179,6 +179,9 @@
 (setq kubectx-mode-line-update-interval 1)
 (kubectx-mode 1)
 
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/broadcast.el"))
+(require 'broadcast)
+
 (savehist-mode 1)
 
 (setq winner-dont-bind-my-keys t)

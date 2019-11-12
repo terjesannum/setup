@@ -33,4 +33,5 @@ github_clone_or_pull $HOME/.emacs.d/github.com \
     https://github.com/ensime/emacs-sbt-mode.git \
     https://github.com/ensime/emacs-scala-mode.git \
     https://github.com/syohex/emacs-hcl-mode.git \
-    https://github.com/syohex/emacs-terraform-mode.git
+    https://github.com/syohex/emacs-terraform-mode.git \
+    https://github.com/killdash9/broadcast.el.git
