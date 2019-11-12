@@ -20,7 +20,6 @@ for dir in \
     /usr/local/opt/coreutils/libexec/gnubin \
     /usr/local/opt/python/libexec/bin \
     $HOME/inst/go/bin \
-    $HOME/inst/emacs/bin \
     ; do
     test -d $dir && add_path $dir
 done
