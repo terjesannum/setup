@@ -17,7 +17,9 @@
 
 (eval-when-compile
   (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
-  (require 'use-package))
+  (require 'use-package)
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t))
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/exec-path-from-shell"))
