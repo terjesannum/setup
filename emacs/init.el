@@ -21,81 +21,43 @@
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/exec-path-from-shell"))
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/docker-tramp.el"))
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/kubernetes-tramp"))
+(use-package "restclient"
+  :mode ("\\.rest\\'" . restclient-mode))
+(use-package "window-number"
+  :config (window-number-mode t))
+(use-package "go-mode")
+(use-package "markdown-mode"
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+(use-package "dockerfile-mode")
+(use-package "logstash-conf"
+  :mode (("logstash.*\\.conf\\'" . logstash-conf-mode)))
+(use-package "puppet-mode")
+(use-package yaml-mode)
+(use-package smart-shift
+  :hook (yaml-mode . smart-shift-mode))
+(use-package terraform-mode)
+(use-package highlight-indentation)
+(use-package copy-as-format
+  :bind (("C-c w s" . copy-as-format-slack)
+         ("C-c w g" . copy-as-format-github)))
+(use-package "js2-mode"
+  :mode (("\\.\\(js\\|json\\)\\'" . js2-mode)))
+(use-package scala-mode
+  :interpreter ("scala" . scala-mode))
+(use-package google-this
+  :init (setq google-this-modeline-indicator nil)
+  :config (google-this-mode t)
+  :bind (("C-c / ." . browse-url)))
+(use-package broadcast)
+(use-package bash-completion
+  :commands 'bash-completion-dynamic-complete)
+(use-package exec-path-from-shell)
+(use-package docker-tramp)
+(use-package kubernetes-tramp)
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/dash.el"))
-(eval-after-load 'dash '(dash-enable-font-lock))
-(require 'dash)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/restclient.el"))
-(require 'restclient)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/window-number"))
-(require 'window-number)
-(setq window-number-inactive-foreground (face-attribute 'mode-line :foreground)
-      window-number-inactive-background (face-attribute 'mode-line :background))
-(window-number-mode t)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/go-mode.el"))
-(autoload 'go-mode "go-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/markdown-mode"))
-(autoload 'markdown-mode "markdown-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/dockerfile-mode"))
-(autoload 'dockerfile-mode "dockerfile-mode" nil t)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/logstash-conf.el"))
-(autoload 'logstash-conf-mode "logstash-conf" nil t)
-(add-to-list 'auto-mode-alist '("logstash.*\\.conf\\'" . logstash-conf-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/puppet-syntax-emacs"))
-(autoload 'puppet-mode "puppet-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/yaml-mode"))
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/smart-shift"))
-(require 'smart-shift)
-(add-hook 'yaml-mode-hook 'smart-shift-mode)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-hcl-mode"))
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-terraform-mode"))
-(require 'terraform-mode)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/Highlight-Indentation-for-Emacs"))
-(require 'highlight-indentation)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/copy-as-format"))
-(require 'copy-as-format)
-(global-set-key (kbd "C-c w s") 'copy-as-format-slack)
-(global-set-key (kbd "C-c w g") 'copy-as-format-github)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/js2-mode"))
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)\\'" . js2-mode))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-scala-mode"))
-(autoload 'scala-mode "scala-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.s\\(cala\\|bt\\)\\'" . scala-mode))
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-sbt-mode"))
-(require 'sbt-mode)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-google-this"))
-(setq google-this-modeline-indicator nil)
-(require 'google-this)
-(google-this-mode 1)
-(global-set-key (kbd "C-c / .") 'browse-url)
 
 (setq-default buffer-file-coding-system 'iso-8859-1-unix
               c-basic-offset 2
@@ -188,9 +150,6 @@
 (require 'kubectx-mode)
 (setq kubectx-mode-line-update-interval 1)
 (kubectx-mode 1)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/broadcast.el"))
-(require 'broadcast)
 
 (savehist-mode 1)
 
