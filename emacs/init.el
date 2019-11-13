@@ -186,3 +186,6 @@
           (lambda ()
             (with-current-buffer (get-buffer "*Messages*")
               (write-file (concat user-emacs-directory "/messages")))))
+
+(setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
+(load custom-file :noerror)
