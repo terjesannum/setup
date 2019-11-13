@@ -55,7 +55,9 @@
   :commands 'bash-completion-dynamic-complete)
 (use-package exec-path-from-shell)
 (use-package docker-tramp)
-(use-package kubernetes-tramp)
+(use-package kubernetes-tramp
+  :init (setq tramp-remote-shell-executable "sh")
+  :config (kubernetes-tramp-add-method))
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
 
