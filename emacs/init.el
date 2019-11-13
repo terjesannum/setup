@@ -11,6 +11,14 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(eval-when-compile
+  (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
+  (require 'use-package))
+
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/exec-path-from-shell"))
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/docker-tramp.el"))
