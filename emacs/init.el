@@ -29,8 +29,9 @@
   (setq use-package-always-ensure t))
 
 (use-package time
-  :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M")
-  :config (display-time-mode t))
+  :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M"
+              display-time-mail-file 'none)
+  :config (display-time-mode 1))
 (use-package paren
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
