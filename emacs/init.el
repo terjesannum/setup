@@ -24,11 +24,18 @@
 (use-package paren
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
-  :config (show-paren-mode t))
+  :config (show-paren-mode 1))
+(use-package savehist
+  :config (savehist-mode 1))
+(use-package winner
+  :init (setq winner-dont-bind-my-keys t)
+  :bind (("C-c u" . winner-undo)
+         ("C-c r" . winner-redo))
+  :config (winner-mode 1))
 (use-package "restclient"
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package "window-number"
-  :config (window-number-mode t))
+  :config (window-number-mode 1))
 (use-package "go-mode")
 (use-package "markdown-mode"
   :mode (("README\\.md\\'" . gfm-mode)
@@ -52,7 +59,7 @@
   :interpreter ("scala" . scala-mode))
 (use-package google-this
   :init (setq google-this-modeline-indicator nil)
-  :config (google-this-mode t)
+  :config (google-this-mode 1)
   :bind (("C-c / ." . browse-url)))
 (use-package flycheck
   :init (global-flycheck-mode))
@@ -154,13 +161,6 @@
 (require 'kubectx-mode)
 (setq kubectx-mode-line-update-interval 1)
 (kubectx-mode 1)
-
-(savehist-mode 1)
-
-(setq winner-dont-bind-my-keys t)
-(global-set-key (kbd "C-c u") 'winner-undo)
-(global-set-key (kbd "C-c r") 'winner-redo)
-(winner-mode 1)
 
 (defun set-selective-display-at-column ()
   (interactive)
