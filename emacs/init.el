@@ -43,7 +43,7 @@
   :config (window-number-mode 1))
 (use-package go-mode)
 (use-package markdown-mode
-  :mode (("README\\.md\\'" . gfm-mode)
+  :mode (("github.*\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
 (use-package dockerfile-mode)
