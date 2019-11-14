@@ -21,6 +21,10 @@
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
+(use-package paren
+  :init (setq show-paren-delay 0
+              show-paren-style 'expression)
+  :config (show-paren-mode t))
 (use-package "restclient"
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package "window-number"
@@ -102,10 +106,6 @@
 (column-number-mode 1)
 
 (global-font-lock-mode t)
-
-(show-paren-mode)
-(setq show-paren-delay 0)
-(setq show-paren-style 'expression)
 
 (defun spook-string ()
   (mapconcat 'identity
