@@ -34,19 +34,19 @@
   :bind (("C-c u" . winner-undo)
          ("C-c r" . winner-redo))
   :config (winner-mode 1))
-(use-package "restclient"
+(use-package restclient
   :mode ("\\.rest\\'" . restclient-mode))
-(use-package "window-number"
+(use-package window-number
   :config (window-number-mode 1))
-(use-package "go-mode")
-(use-package "markdown-mode"
+(use-package go-mode)
+(use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
-(use-package "dockerfile-mode")
-(use-package "logstash-conf"
+(use-package dockerfile-mode)
+(use-package logstash-conf
   :mode (("logstash.*\\.conf\\'" . logstash-conf-mode)))
-(use-package "puppet-mode")
+(use-package puppet-mode)
 (use-package yaml-mode)
 (use-package smart-shift
   :hook (yaml-mode . smart-shift-mode))
