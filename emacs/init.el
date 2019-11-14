@@ -21,6 +21,9 @@
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
+(use-package time
+  :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M")
+  :config (display-time-mode t))
 (use-package paren
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
@@ -106,9 +109,6 @@
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
 (setq visible-bell t)
-
-(setq display-time-format "%a/%V %Y-%m-%d %H:%M")
-(display-time)
 
 (line-number-mode 1)
 (column-number-mode 1)
