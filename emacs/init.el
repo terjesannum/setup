@@ -25,6 +25,8 @@
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
   :config (show-paren-mode 1))
+(use-package hl-line
+  :config (global-hl-line-mode 1))
 (use-package savehist
   :config (savehist-mode 1))
 (use-package winner
@@ -108,7 +110,6 @@
 (setq display-time-format "%a/%V %Y-%m-%d %H:%M")
 (display-time)
 
-(global-hl-line-mode 1)
 (line-number-mode 1)
 (column-number-mode 1)
 
