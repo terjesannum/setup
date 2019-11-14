@@ -50,6 +50,8 @@
   :init (setq google-this-modeline-indicator nil)
   :config (google-this-mode t)
   :bind (("C-c / ." . browse-url)))
+(use-package flycheck
+  :init (global-flycheck-mode))
 (use-package broadcast)
 (use-package bash-completion
   :commands 'bash-completion-dynamic-complete)
