@@ -1,3 +1,10 @@
+;;; init.el --- Emacs initialization
+
+;;; Commentary:
+;;; https://github.com/terjesannum/setup
+
+;;; Code:
+
 (when window-system
   (tool-bar-mode -1)
   (load-file (concat user-emacs-directory "/github.com/cyberpunk-theme.el/cyberpunk-theme.el"))
@@ -194,3 +201,5 @@
 
 (setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
 (load custom-file :noerror)
+
+;;; init.el ends here
