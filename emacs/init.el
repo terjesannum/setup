@@ -78,7 +78,8 @@
   :init (global-flycheck-mode))
 (use-package broadcast)
 (use-package bash-completion
-  :commands 'bash-completion-dynamic-complete)
+  :commands 'bash-completion-dynamic-complete
+  :init (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete))
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-check-startup-files nil
               exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
