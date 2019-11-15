@@ -82,7 +82,7 @@
 (use-package exec-path-from-shell)
 (use-package tramp
   :init (setq tramp-histfile-override t
-              tramp-default-method "ssh")
+              tramp-default-method "ssh"))
 (use-package docker-tramp)
 (use-package kubernetes-tramp
   :init (setq tramp-remote-shell-executable "sh")
