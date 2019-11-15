@@ -79,10 +79,15 @@
 (use-package broadcast)
 (use-package bash-completion
   :commands 'bash-completion-dynamic-complete)
-(use-package exec-path-from-shell)
+(use-package exec-path-from-shell
+  :init (setq exec-path-from-shell-check-startup-files nil
+              exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
+  :config (exec-path-from-shell-initialize))
 (use-package tramp
   :init (setq tramp-histfile-override t
-              tramp-default-method "ssh"))
+              tramp-default-method "ssh"
+              explicit-shell-file-name "sh"
+              explicit-sh-args '("-l")))
 (use-package docker-tramp)
 (use-package kubernetes-tramp
   :init (setq tramp-remote-shell-executable "sh")
