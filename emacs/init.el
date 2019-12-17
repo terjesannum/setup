@@ -7,8 +7,8 @@
 
 (when window-system
   (tool-bar-mode -1)
-  (load-file (concat user-emacs-directory "/github.com/cyberpunk-theme.el/cyberpunk-theme.el"))
-  )
+  (load-file (concat user-emacs-directory "/github.com/cyberpunk-theme.el/cyberpunk-theme.el")))
+
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
