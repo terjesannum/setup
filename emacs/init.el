@@ -72,7 +72,8 @@
   :interpreter ("scala" . scala-mode))
 (use-package google-this
   :init (setq google-this-modeline-indicator nil)
-  :config (google-this-mode 1)
+  :config (google-this-mode 1))
+(use-package browse-url
   :bind (("C-c / ." . browse-url)))
 (use-package flycheck
   :init (global-flycheck-mode))
