@@ -32,6 +32,8 @@
   :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M"
               display-time-mail-file 'none)
   :config (display-time-mode 1))
+(use-package calendar
+  :init (setq calendar-week-start-day 1))
 (use-package paren
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
@@ -168,8 +170,6 @@
   "Shift region one character to the left."
   (interactive)
   (shift-region -1))
-
-(setq calendar-week-start-day 1)
 
 (setq mac-option-modifier nil
       mac-command-modifier 'meta)
