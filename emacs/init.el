@@ -120,9 +120,16 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-(when (and (eq window-system 'x) (getenv "VDI"))
-  (defvar x-super-keysym) ; defined on emacs with x support
-  (setq x-super-keysym 'meta))
+
+(cond ((eq window-system 'x) (when (getenv "VDI")
+                               (defvar x-super-keysym) ; defined on emacs with x support
+                               (setq x-super-keysym 'meta)))
+      ((eq window-system 'ns) (progn
+                                (defvar mac-option-modifier) ; defined on mac emacs
+                                (defvar mac-command-modifier)
+                                (setq mac-option-modifier nil)
+                                (setq mac-command-modifier 'meta))))
+
 (global-set-key (kbd "C-c g") 'goto-line)
 (global-set-key (kbd "C-c ;") 'comment-region)
 (global-set-key (kbd "C-c :") 'uncomment-region)
@@ -173,9 +180,6 @@
   "Shift region one character to the left."
   (interactive)
   (shift-region -1))
-
-(setq mac-option-modifier nil
-      mac-command-modifier 'meta)
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-influxdb-mode"))
 (require 'influxdb-mode)
