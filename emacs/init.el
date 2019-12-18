@@ -134,18 +134,20 @@
 (global-font-lock-mode t)
 
 (defun spook-string ()
+  "Generate string test data."
   (mapconcat 'identity
    (delete "" (split-string (with-temp-buffer (spook) (buffer-string)) "\n"))
    " "))
 
-(defun url-decode-region (start end)
-  "url decode region"
+(defun url-decode-region (begin end)
+  "URL decode text between BEGIN and END."
   (interactive "r")
   (save-excursion
     (let ((text (delete-and-extract-region start end)))
       (insert (replace-regexp-in-string "\\+" " " (url-unhex-string text))))))
 
 (defun shift-region (distance)
+  "Shift region DISTANCE characters."
   (interactive "nDistance: ")
   (let ((mark (mark)))
     (save-excursion
@@ -156,10 +158,12 @@
       (setq deactivate-mark nil))))
 
 (defun shift-right ()
+  "Shift region one character to the right."
   (interactive)
   (shift-region 1))
 
 (defun shift-left ()
+  "Shift region one character to the left."
   (interactive)
   (shift-region -1))
 
@@ -182,6 +186,7 @@
 (kubectx-mode 1)
 
 (defun set-selective-display-at-column ()
+  "Set selective display at current column."
   (interactive)
   (set-selective-display (+ 1 (current-column))))
 (global-set-key (kbd "C-c $") 'set-selective-display-at-column)
@@ -191,10 +196,10 @@
 
 (server-start)
 
-(defvar ts-emacs-geometry nil "Emacs frame geometry: (width height x y)")
+(defvar ts-emacs-geometry nil "Emacs frame geometry: (width height x y).")
 
 (defun ts-emacs-set-frame-geometry (&optional geometry)
-  "Set emacs frame geometry"
+  "Set Emacs frame geometry to defaults in `ts-emacs-geometry' or GEOMETRY if supplied."
   (interactive)
   (let ((geometry-list (or geometry (and (functionp ts-emacs-geometry) (funcall ts-emacs-geometry)) ts-emacs-geometry)))
     (when (and window-system geometry-list)
