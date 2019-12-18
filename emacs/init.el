@@ -115,7 +115,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
 
-(when (getenv "VDI")
+(when (and (eq window-system 'x) (getenv "VDI"))
+  (defvar x-super-keysym) ; defined on emacs with x support
   (setq x-super-keysym 'meta))
 (global-set-key (kbd "C-c g") 'goto-line)
 (global-set-key (kbd "C-c ;") 'comment-region)
