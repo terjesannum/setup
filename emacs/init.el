@@ -47,6 +47,9 @@
   :bind (("C-c u" . winner-undo)
          ("C-c r" . winner-redo))
   :config (winner-mode 1))
+(use-package ido
+  :init (setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
+  :config (ido-mode 'buffers))
 (use-package restclient
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
@@ -192,9 +195,6 @@
   (interactive)
   (set-selective-display (+ 1 (current-column))))
 (global-set-key (kbd "C-c $") 'set-selective-display-at-column)
-
-(setq ido-ignore-buffers '("\\` " "\\`\\*tramp" "Completions\\*\\'"))
-(ido-mode 'buffers)
 
 (server-start)
 
