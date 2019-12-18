@@ -76,7 +76,8 @@
 (use-package browse-url
   :bind (("C-c / ." . browse-url)))
 (use-package flycheck
-  :init (global-flycheck-mode))
+  :init (setq flycheck-emacs-lisp-load-path 'inherit)
+  :config (global-flycheck-mode))
 (use-package broadcast)
 (use-package bash-completion
   :commands 'bash-completion-dynamic-complete
