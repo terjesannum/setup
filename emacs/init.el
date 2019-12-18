@@ -14,13 +14,13 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq save-abbrevs 'silently)
 
-(let ((local-settings (expand-file-name (concat user-emacs-directory "/local.el"))))
-  (when (file-exists-p local-settings)
-    (load-library local-settings)))
-
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
+(let ((local-settings (expand-file-name (concat user-emacs-directory "/local.el"))))
+  (when (file-exists-p local-settings)
+    (load-library local-settings)))
 
 (eval-when-compile
   (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
