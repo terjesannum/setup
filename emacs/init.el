@@ -144,7 +144,7 @@
   "URL decode text between BEGIN and END."
   (interactive "r")
   (save-excursion
-    (let ((text (delete-and-extract-region start end)))
+    (let ((text (delete-and-extract-region begin end)))
       (insert (replace-regexp-in-string "\\+" " " (url-unhex-string text))))))
 
 (defun shift-region (distance)
