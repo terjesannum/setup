@@ -83,6 +83,9 @@
 (use-package flycheck
   :init (setq flycheck-emacs-lisp-load-path 'inherit)
   :config (global-flycheck-mode))
+(use-package flycheck-package
+  :after (flycheck)
+  :config (flycheck-package-setup))
 (use-package broadcast)
 (use-package bash-completion
   :commands 'bash-completion-dynamic-complete
