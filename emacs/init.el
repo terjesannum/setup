@@ -43,6 +43,7 @@
 (use-package savehist
   :config (savehist-mode 1))
 (use-package winner
+  :demand t
   :init (setq winner-dont-bind-my-keys t)
   :bind (("C-c u" . winner-undo)
          ("C-c r" . winner-redo))
