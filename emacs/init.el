@@ -104,6 +104,10 @@
 (use-package kubernetes-tramp
   :init (setq tramp-remote-shell-executable "sh")
   :config (kubernetes-tramp-add-method))
+(use-package magit
+  :config (setq magit-git-global-arguments
+                (append magit-git-global-arguments '("-c" "color.ui=never"))))
+
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
 
