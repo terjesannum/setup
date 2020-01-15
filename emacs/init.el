@@ -107,6 +107,10 @@
 (use-package magit
   :config (setq magit-git-global-arguments
                 (append magit-git-global-arguments '("-c" "color.ui=never"))))
+(use-package flycheck-elm
+  :after (flycheck)
+  :config (flycheck-elm-setup))
+(use-package elm-mode)
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
