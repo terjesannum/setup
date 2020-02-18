@@ -115,10 +115,11 @@
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
 
-(setq-default buffer-file-coding-system 'iso-8859-1-unix
-              c-basic-offset 2
+(setq-default c-basic-offset 2
               js-indent-level 2
               indent-tabs-mode nil)
+
+(prefer-coding-system 'utf-8)
 
 (defvar user-temporary-file-directory
   (expand-file-name (concat user-emacs-directory "/" "autosaves" "/")))
