@@ -210,3 +210,22 @@ if type openssl &>/dev/null; then
         fi
     }
 fi
+
+# For use in emacs-shell, trigger send-invisible to read a secret on stdin and assign value to a variable
+read_secret() {
+    arg=$1; shift
+    if test "$arg" = "-E"; then
+        exp=1
+        arg=$1
+    else
+        exp=0
+    fi
+    if test -z "$arg"; then
+        echo "Usage: read_secret [-E] <variable>"
+        return 1
+    else
+        read -p 'Password: ' $arg
+        test $exp -eq 1 && export $arg
+        return 0
+    fi
+}
