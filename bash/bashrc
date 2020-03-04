@@ -213,10 +213,10 @@ fi
 
 # For use in emacs-shell, trigger send-invisible to read a secret on stdin and assign value to a variable
 read_secret() {
-    arg=$1; shift
+    arg=$1
     if test "$arg" = "-E"; then
         exp=1
-        arg=$1
+        arg=$2
     else
         exp=0
     fi
