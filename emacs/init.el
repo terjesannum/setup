@@ -95,6 +95,7 @@
   :init (setq exec-path-from-shell-check-startup-files nil
               exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
   :config (exec-path-from-shell-initialize))
+(defvar explicit-sh-args)
 (use-package tramp
   :init (setq tramp-histfile-override t
               tramp-default-method "ssh"
