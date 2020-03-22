@@ -122,8 +122,8 @@ if test -r $GOOGLE_CLOUD_SDK_DIR/path.bash.inc; then
     fi
 fi
 
-if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/bash_completion.sh; then
-   . $HOME/lib/bash/github.com/complete-alias/bash_completion.sh
+if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/complete_alias; then
+   . $HOME/lib/bash/github.com/complete-alias/complete_alias
    if type kubectl &>/dev/null; then
       complete -F _complete_alias k
       complete -F _complete_alias kd
