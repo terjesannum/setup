@@ -101,6 +101,16 @@ if type minikube &>/dev/null; then
    alias minikube-docker-env='eval $(minikube docker-env)'
 fi
 
+if type kubectl &>/dev/null; then
+  . <(kubectl completion bash)
+  alias k=kubectl
+  alias kd='kubectl --namespace default'
+  alias ks='kubectl --namespace kube-system'
+  alias kn='kubectl --namespace nais'
+  alias ki='kubectl --namespace istio-system'
+  alias kt='kubectl --namespace tpa'
+fi
+
 if type kubectx &>/dev/null; then
   . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
   alias kc=kubectx
@@ -130,6 +140,7 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
       complete -F _complete_alias ks
       complete -F _complete_alias kn
       complete -F _complete_alias ki
+      complete -F _complete_alias kt
    fi
    if type kubectx &>/dev/null; then
       complete -F _complete_alias kc
@@ -169,15 +180,6 @@ fi
 epoch() {
     date -d @$(echo $1 | cut -c-10)
 }
-
-if type kubectl &>/dev/null; then
-  . <(kubectl completion bash)
-  alias k=kubectl
-  alias kd='kubectl --namespace default'
-  alias ks='kubectl --namespace kube-system'
-  alias kn='kubectl --namespace nais'
-  alias ki='kubectl --namespace istio-system'
-fi
 
 if type vault &>/dev/null && test -r /etc/vault/tls/ca.pem; then
     export VAULT_ADDR=https://$(hostname -f):8200
