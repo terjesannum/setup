@@ -109,6 +109,7 @@ if type kubectl &>/dev/null; then
   alias kn='kubectl --namespace nais'
   alias ki='kubectl --namespace istio-system'
   alias kt='kubectl --namespace tpa'
+  alias k-get-all='kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found'
 fi
 
 if type kubectx &>/dev/null; then
