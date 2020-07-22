@@ -200,24 +200,35 @@ if test -d /proc; then
 fi
 
 if type openssl &>/dev/null; then
+    _parse_url_args() {
+        h=`echo $1 | sed -r 's,^https://([^/]*).*,\1,'`
+        if echo $h | grep -q :; then
+            p=`echo $h | cut -f2 -d:`
+            h=`echo $h | cut -f1 -d:`
+        elif test $# -eq 1; then
+            p=443
+        else
+            p=$2
+        fi
+    }
     showcert() {
         if test -r "$1"; then
             openssl x509 -in $1 -text -noout
         else
-            h=`echo $1 | sed -r 's,^https://([^/]*).*,\1,'`
-            if echo $h | grep -q :; then
-                p=`echo $h | cut -f2 -d:`
-                h=`echo $h | cut -f1 -d:`
-            elif test $# -eq 1; then
-                p=443
-            else
-                p=$2
-            fi
+            _parse_url_args $1 $2
             if test "$p" -eq "$p" 2>/dev/null; then
                 echo | openssl s_client -servername $h -connect $h:$p 2>/dev/null | openssl x509 -text -noout
             else
                 echo "Usage: showcert <file|host|url> [port]" 1>&2
             fi
+        fi
+    }
+    getcert() {
+        _parse_url_args $1 $2
+        if test "$p" -eq "$p" 2>/dev/null; then
+            echo | openssl s_client -servername $h -connect $h:$p | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+        else
+            echo "Usage: getcert <host|url> [port]" 1>&2
         fi
     }
 fi
