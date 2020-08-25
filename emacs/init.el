@@ -98,6 +98,8 @@
   :config (exec-path-from-shell-initialize))
 (use-package password-cache
   :init (setq password-cache-expiry 3600))
+(use-package auth-source
+  :init (setq auth-source-save-behavior nil))
 (defvar explicit-sh-args)
 (use-package tramp
   :init (setq tramp-histfile-override t
