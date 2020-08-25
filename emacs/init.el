@@ -96,6 +96,8 @@
   :init (setq exec-path-from-shell-check-startup-files nil
               exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"))
   :config (exec-path-from-shell-initialize))
+(use-package password-cache
+  :init (setq password-cache-expiry 3600))
 (defvar explicit-sh-args)
 (use-package tramp
   :init (setq tramp-histfile-override t
