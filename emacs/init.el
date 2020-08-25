@@ -7,7 +7,8 @@
 
 (when window-system
   (tool-bar-mode -1)
-  (load-file (concat user-emacs-directory "/github.com/cyberpunk-theme.el/cyberpunk-theme.el")))
+  (add-to-list 'custom-theme-load-path (concat user-emacs-directory "/github.com/cyberpunk-theme.el"))
+  (load-theme 'cyberpunk t))
 
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
