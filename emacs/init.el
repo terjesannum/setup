@@ -144,7 +144,9 @@
                                 (defvar mac-option-modifier) ; defined on mac emacs
                                 (defvar mac-command-modifier)
                                 (setq mac-option-modifier nil)
-                                (setq mac-command-modifier 'meta))))
+                                (setq mac-command-modifier 'meta)
+                                (when (string= default-directory "/")
+                                  (setq default-directory (concat (getenv "HOME") "/"))))))
 
 (global-set-key (kbd "C-c g") 'goto-line)
 (global-set-key (kbd "C-c ;") 'comment-region)
