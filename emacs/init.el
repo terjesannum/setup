@@ -56,6 +56,15 @@
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
   :config (window-number-mode 1))
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred))
+(use-package lsp-ui
+  :commands lsp-ui-mode)
+(use-package company
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1))
 (use-package go-mode)
 (use-package markdown-mode
   :mode (("github.*\\.md\\'" . gfm-mode)
