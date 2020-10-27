@@ -23,12 +23,6 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
-(require 'gcloud-mode)
-(setq gcloud-tunnel-through-iap t)
-(setq gcloud-mode-line-update-interval 10)
-(gcloud-mode 1)
-
 (eval-when-compile
   (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
   (require 'use-package)
@@ -131,6 +125,20 @@
   :config (flycheck-elm-setup))
 (use-package elm-mode)
 
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
+(require 'gcloud-mode)
+(setq gcloud-tunnel-through-iap t)
+(setq gcloud-mode-line-update-interval 10)
+(gcloud-mode 1)
+
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-kubectx-mode"))
+(require 'kubectx-mode)
+(setq kubectx-mode-line-update-interval 1)
+(kubectx-mode 1)
+
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-influxdb-mode"))
+(require 'influxdb-mode)
+
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
 
@@ -214,14 +222,6 @@
   "Shift region one character to the left."
   (interactive)
   (shift-region -1))
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-influxdb-mode"))
-(require 'influxdb-mode)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-kubectx-mode"))
-(require 'kubectx-mode)
-(setq kubectx-mode-line-update-interval 1)
-(kubectx-mode 1)
 
 (defun set-selective-display-at-column ()
   "Set selective display at current column."
