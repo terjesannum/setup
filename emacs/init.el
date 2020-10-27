@@ -23,6 +23,12 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
+(require 'gcloud-mode)
+(setq gcloud-tunnel-through-iap t)
+(setq gcloud-mode-line-update-interval 10)
+(gcloud-mode 1)
+
 (eval-when-compile
   (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
   (require 'use-package)
@@ -211,11 +217,6 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-influxdb-mode"))
 (require 'influxdb-mode)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
-(require 'gcloud-mode)
-(setq gcloud-mode-line-update-interval 10)
-(gcloud-mode 1)
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-kubectx-mode"))
 (require 'kubectx-mode)
