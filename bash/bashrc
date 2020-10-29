@@ -1,6 +1,7 @@
 # -*- mode: shell-script; -*-
 # Generic bashrc, this will be sourced on all host. Use bashrc.emacshost for setup not needed on remote hosts, pods etc.
 
+test -r /etc/environment && . /etc/environment
 test -r /etc/bashrc && . /etc/bashrc
 test -r $HOME/lib/bash/local.sh && . $HOME/lib/bash/local.sh
 
