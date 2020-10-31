@@ -124,6 +124,7 @@
   :after (flycheck)
   :config (flycheck-elm-setup))
 (use-package elm-mode)
+(use-package nginx-mode)
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
