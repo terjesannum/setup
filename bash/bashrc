@@ -75,6 +75,7 @@ export LC_ALL=en_US.UTF-8
 export CLICOLOR=1
 export COLORTERM=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+export SYSTEMD_COLORS=1
 if echo foo | grep --color=auto foo >/dev/null 2>&1; then
     alias grep='grep --color=auto'
 fi
