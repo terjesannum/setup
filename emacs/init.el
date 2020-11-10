@@ -125,6 +125,12 @@
   :config (flycheck-elm-setup))
 (use-package elm-mode)
 (use-package nginx-mode)
+(use-package org
+  :defines org-capture-templates
+  :init (setq org-agenda-files '("~/org/")
+              org-capture-templates '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks") "* TODO %?\n  %i\n  %a")))
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . 'org-capture)))
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
