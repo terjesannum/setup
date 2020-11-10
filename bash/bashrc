@@ -90,6 +90,7 @@ if type shasum &>/dev/null; then
 fi
 
 for dir in \
+    $HOME/lib \
     /usr/lib/oracle/12.2/client64/lib \
     ; do
     test -d $dir && export LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH
