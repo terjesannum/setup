@@ -128,7 +128,8 @@
 (use-package org
   :defines org-capture-templates
   :init (setq org-agenda-files '("~/org/")
-              org-capture-templates '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks") "* TODO %?\n  %i\n  %a")))
+              org-capture-templates '(("t" "Todo work" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a")
+                                      ("p" "Todo priv" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . 'org-capture)))
 
