@@ -127,9 +127,11 @@
 (use-package nginx-mode)
 (use-package org
   :defines org-capture-templates
-  :init (setq org-agenda-files '("~/org/")
-              org-capture-templates '(("t" "Todo work" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a")
-                                      ("p" "Todo priv" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")))
+  :init (progn
+          (setq org-agenda-files '("~/org/")
+                org-capture-templates '(("t" "Todo work" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a")
+                                        ("p" "Todo priv" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")))
+          (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . 'org-capture)))
 
