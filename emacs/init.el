@@ -126,11 +126,13 @@
 (use-package elm-mode)
 (use-package nginx-mode)
 (use-package org
-  :defines org-capture-templates
+  :defines org-capture-templates org-agenda-custom-commands
   :init (progn
           (setq org-agenda-files '("~/org/")
-                org-capture-templates '(("t" "Todo work" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a")
-                                        ("p" "Todo priv" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")))
+                org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
+                                        ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))
+                org-agenda-custom-commands '(("p" "Private todos" todo "" ((org-agenda-files '("~/org/todo-priv.org"))))
+                                             ("w" "Work todos" todo "" ((org-agenda-files '("~/org/todo-work.org"))))))
           (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . 'org-capture)))
