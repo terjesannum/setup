@@ -126,16 +126,21 @@
 (use-package elm-mode)
 (use-package nginx-mode)
 (use-package org
-  :defines org-capture-templates org-agenda-custom-commands
-  :init (progn
-          (setq org-agenda-files '("~/org/")
-                org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
-                                        ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))
-                org-agenda-custom-commands '(("p" "Private todos" todo "" ((org-agenda-files '("~/org/todo-priv.org"))))
-                                             ("w" "Work todos" todo "" ((org-agenda-files '("~/org/todo-work.org"))))))
-          (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers))
+  :init (setq org-agenda-files '("~/org/"))
   :bind (("C-c a" . org-agenda)
-         ("C-c c" . 'org-capture)))
+         ("C-c c" . 'org-capture))
+  :config (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers))
+(use-package org-agenda
+    :ensure nil
+    :after org
+    :init (setq org-agenda-include-diary t
+                org-agenda-custom-commands '(("p" "Private todos" todo "" ((org-agenda-files '("~/org/todo-priv.org"))))
+                                             ("w" "Work todos" todo "" ((org-agenda-files '("~/org/todo-work.org")))))))
+(use-package org-capture
+    :ensure nil
+    :after org
+    :init (setq org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
+                                        ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))))
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
