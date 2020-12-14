@@ -116,14 +116,14 @@ if type kubectl &>/dev/null; then
   alias kn='kubectl --namespace nais'
   alias ki='kubectl --namespace istio-system'
   alias kt='kubectl --namespace tpa'
-  K_GET_ALL_EXCLUDE='(?:^events|\.events\.k8s\.io|\.velero\.io|\.rook\.io)$'
+  K_GET_ALL_EXCLUDE='(events|.*\.events\.k8s\.io|.*\.velero\.io|.*\.rook\.io)'
   k-get-all() {
     if test "$1" = "-a" -o -z "$K_GET_ALL_EXCLUDE"; then
       all=1
     else
       all=0
     fi
-    kubectl api-resources --verbs=list --namespaced -o name | (if test $all -gt 0; then cat; else grep -v -E $K_GET_ALL_EXCLUDE; fi) | xargs -n 1 kubectl get --show-kind --ignore-not-found
+    kubectl api-resources --verbs=list --namespaced -o name | (if test $all -gt 0; then cat; else grep -vxE $K_GET_ALL_EXCLUDE; fi) | xargs -n 1 kubectl get --show-kind --ignore-not-found
   }
 fi
 
