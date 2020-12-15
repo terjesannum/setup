@@ -115,8 +115,7 @@
   :init (setq auth-source-save-behavior nil))
 (defvar explicit-sh-args)
 (use-package tramp
-  :init (setq tramp-histfile-override t
-              tramp-default-method "ssh"
+  :init (setq tramp-default-method "ssh"
               explicit-shell-file-name "sh"
               explicit-sh-args '("-l")))
 (use-package docker-tramp)
