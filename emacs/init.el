@@ -35,6 +35,9 @@
   :config (display-time-mode 1))
 (use-package calendar
   :init (setq calendar-week-start-day 1))
+(use-package holidays
+  :ensure nil
+  :init (setq calendar-holidays nil))
 (use-package paren
   :init (setq show-paren-delay 0
               show-paren-style 'expression)
@@ -135,12 +138,40 @@
     :after org
     :init (setq org-agenda-include-diary t
                 org-agenda-custom-commands '(("p" "Private todos" todo "" ((org-agenda-files '("~/org/todo-priv.org"))))
-                                             ("w" "Work todos" todo "" ((org-agenda-files '("~/org/todo-work.org")))))))
+                                             ("w" "Work todos" todo "" ((org-agenda-files '("~/org/todo-work.org")))))
+                org-agenda-use-time-grid nil))
 (use-package org-capture
     :ensure nil
     :after org
     :init (setq org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
                                         ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))))
+
+(when (eq system-type 'darwin)
+  (require 'org-agenda)
+  (add-to-list 'load-path (concat user-emacs-directory "/github.com/org-mac-iCal"))
+  (require 'org-mac-iCal)
+  (customize-set-variable 'org-mac-iCal-import-exchange t)
+  (customize-set-variable 'org-mac-iCal-calendar-names '("Calendar"))
+  (add-to-list 'org-agenda-custom-commands '("A" "Weekly agenda (Reload Mac Calendar)" agenda "" ((org-agenda-mode-hook 'org-mac-iCal))))
+  (add-hook 'org-agenda-cleanup-fancy-diary-hook
+            (lambda ()
+              ;; Remove canceled
+              (goto-char (point-min))
+              (while (re-search-forward "^ ?[0-9]+:[0-9]+.*\\(Avlyst\\|Canceled\\).*\n\\(^ [^0-9].*\n\\)*" nil t)
+                (replace-match ""))
+              ;; Remove details except location
+              (goto-char (point-min))
+              (while (re-search-forward "^ [^0-9]" nil t)
+                (unless (string= (thing-at-point 'word t) "Location")
+                  (delete-region (line-beginning-position) (1+ (line-end-position)))))
+              ;; Format entries
+              (goto-char (point-min))
+              (while (re-search-forward "\\(.*\\)\n Location: \\(.+\\)" nil t)
+                (replace-match (format "%s (%s)" (match-string 1) (match-string 2))))
+              ;; Remove duplicates
+              (goto-char (point-min))
+              (while (re-search-forward "\\([^\n]+\n\\)\\1+" nil t)
+                (replace-match (match-string 1))))))
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
