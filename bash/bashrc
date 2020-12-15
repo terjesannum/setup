@@ -216,7 +216,7 @@ fi
 
 if type openssl &>/dev/null; then
     _parse_url_args() {
-        h=`echo $1 | sed -r 's,^https://([^/]*).*,\1,'`
+        h=`echo $1 | cut -d/ -f3`
         if echo $h | grep -q :; then
             p=`echo $h | cut -f2 -d:`
             h=`echo $h | cut -f1 -d:`
