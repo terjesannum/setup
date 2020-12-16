@@ -160,7 +160,7 @@
                 (replace-match ""))
               ;; Remove details except location
               (goto-char (point-min))
-              (while (re-search-forward "^ [^0-9]" nil t)
+              (while (re-search-forward "^[^0-9]" nil t)
                 (unless (string= (thing-at-point 'word t) "Location")
                   (delete-region (line-beginning-position) (1+ (line-end-position)))))
               ;; Format entries
