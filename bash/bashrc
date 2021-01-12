@@ -268,3 +268,7 @@ read_secret() {
         return 0
     fi
 }
+
+for i in `seq 1 9`; do
+    alias p$i="awk '{ print \$$i; }'"
+done
