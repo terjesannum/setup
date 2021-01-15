@@ -97,7 +97,7 @@ for dir in \
 done
 
 if test ! -z $INFLUX_HOST; then
-    alias influx='influx -host $INFLUX_HOST -database $INFLUX_DATABASE -precision rfc3339'
+    alias influx='influx ${INFLUX_HOST:+-host $INFLUX_HOST} ${INFLUX_DATABASE:+-database $INFLUX_DATABASE} -precision rfc3339'
 fi
 
 if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
