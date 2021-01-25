@@ -106,7 +106,7 @@
   :init (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete))
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-check-startup-files nil
-              exec-path-from-shell-variables '("PATH" "MANPATH" "KUBECONFIG"
+              exec-path-from-shell-variables '("LC_ALL" "LC_CTYPE" "PATH" "MANPATH" "KUBECONFIG"
                                                "PERL5LIB" "PERL_LOCAL_LIB_ROOT" "PERL_MB_OPT" "PERL_MM_OPT"))
   :config (exec-path-from-shell-initialize))
 (use-package password-cache
