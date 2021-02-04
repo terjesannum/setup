@@ -101,8 +101,8 @@ if test ! -z $INFLUX_HOST; then
     alias influx='influx ${INFLUX_HOST:+-host $INFLUX_HOST} ${INFLUX_DATABASE:+-database $INFLUX_DATABASE} -precision rfc3339'
 fi
 
-if type brew &>/dev/null && test -r $(brew --prefix)/share/bash-completion/bash_completion; then
-  . $(brew --prefix)/share/bash-completion/bash_completion
+if type brew &>/dev/null && test -r $(brew --prefix)/etc/profile.d/bash_completion.sh; then
+  . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 if type minikube &>/dev/null; then
