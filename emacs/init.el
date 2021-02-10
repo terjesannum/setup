@@ -14,6 +14,7 @@
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq save-abbrevs 'silently)
+(add-to-list 'same-window-regexps (regexp-quote "*Buffer List*"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
