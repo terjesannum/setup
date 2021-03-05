@@ -298,6 +298,11 @@
             (with-current-buffer (get-buffer "*Messages*")
               (write-file (concat user-emacs-directory "/messages")))))
 
+(defun show-certificate-region ()
+  "Show certificate in region as text."
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "openssl x509 -text -noout" "*certificate*" nil "*certificate*"))
+
 (setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
 (load custom-file :noerror)
 
