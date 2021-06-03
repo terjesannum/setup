@@ -71,7 +71,11 @@
   (setq company-minimum-prefix-length 1))
 (use-package yasnippet
   :config (yas-global-mode 1))
-(use-package go-mode)
+(use-package go-mode
+  :hook ((before-save . lsp-format-buffer)
+         (before-save . lsp-organize-imports)
+         (go-mode . (lambda ()
+                      (setq tab-width 4)))))
 (use-package markdown-mode
   :mode (("github.*\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
