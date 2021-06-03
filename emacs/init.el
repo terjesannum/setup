@@ -69,7 +69,8 @@
   :config
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1))
-(use-package yasnippet)
+(use-package yasnippet
+  :config (yas-global-mode 1))
 (use-package go-mode)
 (use-package markdown-mode
   :mode (("github.*\\.md\\'" . gfm-mode)
