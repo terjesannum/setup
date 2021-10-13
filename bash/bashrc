@@ -167,6 +167,12 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
    fi
 fi
 
+if test -d /etc/ssl/etcd; then
+    export ETCDCTL_CA_FILE=/etc/ssl/etcd/ca.pem
+    export ETCDCTL_KEY_FILE=/etc/ssl/etcd/etcd-client-key.pem
+    export ETCDCTL_CERT_FILE=/etc/ssl/etcd/etcd-client.pem
+fi
+
 if test -d $HOME/perl5/lib/perl5; then
     eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
