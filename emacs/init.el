@@ -312,6 +312,13 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "openssl x509 -text -noout" "*certificate*" nil "*certificate*"))
 
+(defun minikube-docker-env ()
+  "Set minikube docker env variables."
+  (interactive)
+  (dolist (match (s-match-strings-all "export \\([^=]+\\)=\"\\([^\"]+\\)"
+                                      (shell-command-to-string "minikube docker-env")))
+    (setenv (nth 1 match) (nth 2 match))))
+
 (setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
 (load custom-file :noerror)
 

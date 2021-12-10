@@ -108,6 +108,9 @@ fi
 if type minikube &>/dev/null; then
     minikube-docker-env() {
         eval $(minikube docker-env)
+        if test -n "$INSIDE_EMACS"; then
+            type emacsclient > /dev/null 2>&1 && emacsclient -e '(minikube-docker-env)' > /dev/null
+        fi
     }
     minikube-start-docker() {
         minikube start --no-kubernetes
