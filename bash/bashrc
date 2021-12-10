@@ -106,11 +106,13 @@ if type brew &>/dev/null && test -r $(brew --prefix)/etc/profile.d/bash_completi
 fi
 
 if type minikube &>/dev/null; then
-    minikube-start-docker() {
-        minikube start --no-kubernetes
+    minikube-docker-env() {
         eval $(minikube docker-env)
     }
-    alias minikube-docker-env='eval $(minikube docker-env)'
+    minikube-start-docker() {
+        minikube start --no-kubernetes
+        minikube-docker-env
+    }
 fi
 
 if type kubectl &>/dev/null; then
