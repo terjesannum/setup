@@ -94,6 +94,7 @@
          ("C-c w g" . copy-as-format-github)))
 (use-package "js2-mode"
   :mode (("\\.\\(js\\|json\\)\\'" . js2-mode)))
+(use-package "php-mode")
 (use-package scala-mode
   :interpreter ("scala" . scala-mode))
 (use-package google-this
