@@ -114,6 +114,14 @@ if type minikube &>/dev/null; then
     }
     minikube-start-docker() {
         minikube start --no-kubernetes
+        if test -d $HOME/.ssh/config.d; then
+            cat <<EOF > $HOME/.ssh/config.d/minikube
+Host minikube
+     Hostname $(minikube ip)
+     User docker
+     IdentityFile $HOME/.minikube/machines/minikube/id_rsa
+EOF
+        fi
         minikube-docker-env
     }
     minikube-mount() {
