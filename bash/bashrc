@@ -105,30 +105,6 @@ if type brew &>/dev/null && test -r $(brew --prefix)/etc/profile.d/bash_completi
   . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
-if type minikube &>/dev/null; then
-    minikube-docker-env() {
-        eval $(minikube docker-env)
-        if test -n "$INSIDE_EMACS"; then
-            type emacsclient > /dev/null 2>&1 && emacsclient -e '(minikube-docker-env)' > /dev/null
-        fi
-    }
-    minikube-start-docker() {
-        minikube start --no-kubernetes
-        if test -d $HOME/.ssh/config.d; then
-            cat <<EOF > $HOME/.ssh/config.d/minikube
-Host minikube
-     Hostname $(minikube ip)
-     User docker
-     IdentityFile $HOME/.minikube/machines/minikube/id_rsa
-EOF
-        fi
-        minikube-docker-env
-    }
-    minikube-mount() {
-        minikube mount --ip=$(minikube ip | sed -E 's/[0-9]+$//')1 $@
-    }
-fi
-
 if type kubectl &>/dev/null; then
   . <(kubectl completion bash)
   alias k=kubectl
