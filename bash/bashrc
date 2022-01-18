@@ -116,6 +116,9 @@ if type minikube &>/dev/null; then
         minikube start --no-kubernetes
         minikube-docker-env
     }
+    minikube-mount() {
+        minikube mount --ip=$(minikube ip | sed -E 's/[0-9]+$//')1 $@
+    }
 fi
 
 if type kubectl &>/dev/null; then
