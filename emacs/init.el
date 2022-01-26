@@ -182,7 +182,6 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
-(setq gcloud-tunnel-through-iap t)
 (setq gcloud-mode-line-update-interval 10)
 (gcloud-mode 1)
 
