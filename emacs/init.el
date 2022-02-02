@@ -130,6 +130,8 @@
 (use-package kubernetes-tramp
   :init (setq tramp-remote-shell-executable "sh")
   :config (kubernetes-tramp-add-method))
+(use-package with-editor)
+;  :hook (tramp-shell-started . with-editor-export-editor))
 (use-package flycheck-elm
   :after (flycheck)
   :config (flycheck-elm-setup))
