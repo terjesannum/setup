@@ -147,16 +147,18 @@ if type kubectl &>/dev/null; then
     fi
     kubectl api-resources --verbs=list --namespaced -o name | (if test $all -gt 0; then cat; else grep -vxE $K_GET_ALL_EXCLUDE; fi) | xargs -n 1 kubectl get --show-kind --ignore-not-found
   }
-fi
-
-if type kubectx &>/dev/null; then
-  . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
-  alias kc=kubectx
-fi
-
-if type kubens &>/dev/null; then
-  . $HOME/lib/bash/github.com/kubectx/completion/kubens.bash
-  alias kns=kubens
+  if type kubectx &>/dev/null; then
+      . $HOME/lib/bash/github.com/kubectx/completion/kubectx.bash
+      alias kc=kubectx
+  fi
+  if type kubens &>/dev/null; then
+      . $HOME/lib/bash/github.com/kubectx/completion/kubens.bash
+      alias kns=kubens
+  else
+      kns() {
+          kubectl config set-context --current --namespace=$1
+      }
+  fi
 fi
 
 if type helm &>/dev/null; then
