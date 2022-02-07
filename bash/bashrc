@@ -45,7 +45,7 @@ __prompt_exit_code() {
     fi
 }
 
-base_prompt="\\e[0;33m[\\t]\\e[m\$(__prompt_exit_code) \\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m"
+base_prompt="\\e[0;33m[\\t]\\e[m\$(__prompt_exit_code)\$(test \j -gt 0 && echo \*) \\e[0;${prompt_color}m\\u@\\h\\e[m \\e[0;33m\\w\\e[m"
 PS1="${base_prompt}\\n\\\$ "
 PS2="> "
 
