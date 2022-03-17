@@ -166,11 +166,8 @@ if type helm &>/dev/null; then
   . <(helm completion bash)
 fi
 
-if test -r $GOOGLE_CLOUD_SDK_DIR/path.bash.inc; then
-    . $GOOGLE_CLOUD_SDK_DIR/path.bash.inc
-    if type _completion_loader &>/dev/null && test -r $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc; then
-        . $GOOGLE_CLOUD_SDK_DIR/completion.bash.inc
-    fi
+if type _completion_loader &>/dev/null && test -r /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc; then
+    . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 fi
 
 if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/complete-alias/complete_alias; then
