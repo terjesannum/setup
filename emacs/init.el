@@ -60,7 +60,6 @@
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
   :config (window-number-mode 1))
-(use-package project)
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook (go-mode . lsp-deferred))
