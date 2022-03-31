@@ -60,6 +60,7 @@
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
   :config (window-number-mode 1))
+(use-package project)
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook (go-mode . lsp-deferred))
@@ -138,10 +139,6 @@
                            (if (buffer-modified-p)
                                (with-editor-cancel nil)
                              (with-editor-finish nil))))))
-(use-package flycheck-elm
-  :after (flycheck)
-  :config (flycheck-elm-setup))
-(use-package elm-mode)
 (use-package nginx-mode)
 (use-package org
   :init (setq org-agenda-files '("~/org/"))
