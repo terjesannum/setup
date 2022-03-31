@@ -156,6 +156,10 @@
     :after org
     :init (setq org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
                                         ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))))
+(use-package treemacs
+  :bind (:map global-map
+              ("C-x C-j t" . treemacs-select-window)
+              ("C-x t t"   . treemacs)))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
