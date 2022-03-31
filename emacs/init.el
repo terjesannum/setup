@@ -159,7 +159,8 @@
 (use-package treemacs
   :bind (:map global-map
               ("C-x C-j t" . treemacs-select-window)
-              ("C-x t t"   . treemacs)))
+              ("C-x t t"   . treemacs))
+  :config (treemacs-project-follow-mode 1))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
