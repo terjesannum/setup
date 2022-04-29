@@ -157,9 +157,12 @@
     :init (setq org-capture-templates '(("p" "Private todo" entry (file+headline "~/org/todo-priv.org" "Tasks") "* TODO %?\n  %i\n  %a")
                                         ("w" "Work todo" entry (file+headline "~/org/todo-work.org" "Tasks") "* TODO %?\n  %i\n  %a"))))
 (use-package treemacs
-  :bind (:map global-map
-              ("C-x C-j t" . treemacs-select-window)
-              ("C-x t t"   . treemacs))
+  :after window-number
+  :bind (nil
+         :map global-map
+         ("C-x t t"   . treemacs)
+         :map window-number-mode-map
+         ("C-x C-j t" . treemacs-select-window))
   :config (treemacs-project-follow-mode 1))
 
 (when (eq system-type 'darwin)
