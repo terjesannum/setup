@@ -8,7 +8,17 @@
 (when window-system
   (tool-bar-mode -1)
   (add-to-list 'custom-theme-load-path (concat user-emacs-directory "/github.com/cyberpunk-theme.el"))
-  (load-theme 'cyberpunk t))
+  (load-theme 'cyberpunk t)
+  (custom-set-faces
+   `(ansi-color-black ((t (:foreground "#000000"))))
+   `(ansi-color-red ((t (:foreground "#ff4500"))))
+   `(ansi-color-green ((t (:foreground "#00ff00"))))
+   `(ansi-color-yellow ((t (:foreground "#ffa500"))))
+   `(ansi-color-blue ((t (:foreground "#7b68ee"))))
+   `(ansi-color-magenta ((t (:foreground "#dc8cc3"))))
+   `(ansi-color-cyan ((t (:foreground "#93e0e3"))))
+   `(ansi-color-gray ((t (:foreground "#dcdccc")))))
+  )
 
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
