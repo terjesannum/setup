@@ -334,6 +334,7 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "openssl x509 -text -noout" "*certificate*" nil "*certificate*"))
 
+(require 's)
 (defun minikube-docker-env ()
   "Set minikube docker env variables."
   (interactive)
