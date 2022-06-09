@@ -166,6 +166,10 @@ if type helm &>/dev/null; then
   . <(helm completion bash)
 fi
 
+if type velero &>/dev/null; then
+  . <(velero completion bash)
+fi
+
 if type _completion_loader &>/dev/null && test -r /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc; then
     . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 fi
