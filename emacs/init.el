@@ -25,6 +25,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq save-abbrevs 'silently)
 (add-to-list 'same-window-regexps (regexp-quote "*Buffer List*"))
+(add-to-list 'same-window-regexps (regexp-quote "*Input History*"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
