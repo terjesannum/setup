@@ -175,6 +175,14 @@
          :map window-number-mode-map
          ("C-x C-j t" . treemacs-select-window))
   :config (treemacs-project-follow-mode 1))
+(use-package helm
+  :init
+  (setq helm-command-prefix-key "C-c h")
+  :config
+  (custom-set-faces
+   '(helm-source-header ((t (:background "#008b00")))))
+  :bind (:map shell-mode-map
+              ("C-c C-l" . helm-comint-input-ring)))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
