@@ -181,8 +181,11 @@
   :config
   (custom-set-faces
    '(helm-source-header ((t (:background "#008b00")))))
-  :bind (:map shell-mode-map
-              ("C-c C-l" . helm-comint-input-ring)))
+  :bind (nil
+         :map global-map
+         ("C-c C-y" . helm-show-kill-ring)
+         :map shell-mode-map
+         ("C-c C-l" . helm-comint-input-ring)))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
