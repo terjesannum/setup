@@ -136,6 +136,7 @@
 (use-package tramp
   :defines explicit-sh-args
   :init (setq tramp-default-method "ssh"
+              tramp-histfile-override "/dev/null"
               explicit-shell-file-name "sh"
               explicit-sh-args '("-l")))
 (use-package docker-tramp)
