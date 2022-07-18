@@ -124,6 +124,7 @@
   :commands 'bash-completion-dynamic-complete
   :init (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete))
 (use-package exec-path-from-shell
+  :defines exec-path-from-shell-check-startup-files
   :init (setq exec-path-from-shell-check-startup-files nil
               exec-path-from-shell-variables '("LC_ALL" "LC_CTYPE" "PATH" "MANPATH" "KUBECONFIG"
                                                "PERL5LIB" "PERL_LOCAL_LIB_ROOT" "PERL_MB_OPT" "PERL_MM_OPT"))
@@ -132,8 +133,8 @@
   :init (setq password-cache-expiry 3600))
 (use-package auth-source
   :init (setq auth-source-save-behavior nil))
-(defvar explicit-sh-args)
 (use-package tramp
+  :defines explicit-sh-args
   :init (setq tramp-default-method "ssh"
               explicit-shell-file-name "sh"
               explicit-sh-args '("-l")))
