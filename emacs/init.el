@@ -178,9 +178,8 @@
 (use-package helm
   :init
   (setq helm-command-prefix-key "C-c h")
-  :config
-  (custom-set-faces
-   '(helm-source-header ((t (:background "#008b00")))))
+  :custom-face
+  (helm-source-header ((t (:background "#008b00"))))
   :bind (nil
          :map global-map
          ("C-c C-y" . helm-show-kill-ring)
