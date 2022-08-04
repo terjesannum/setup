@@ -27,6 +27,27 @@ for dir in \
     test -d $dir && add_path $dir
 done
 
+for comp in \
+    $(type brew >/dev/null 2>&1 && echo $(brew --prefix)/etc/profile.d/bash_completion.sh) \
+        /etc/profile.d/bash_completion.sh \
+    ; do
+    if test -r $comp; then
+        . $comp
+        break
+    fi
+done
+
+for asdf in \
+    $(type brew >/dev/null 2>&1 && echo $(brew --prefix asdf)/libexec/asdf.sh) \
+    ; do
+    if test -r $asdf; then
+        . $asdf
+        test -r $(dirname /usr/local/opt/asdf/libexec/asdf.sh)/../etc/bash_completion.d/asdf.bash && \
+            . $(dirname /usr/local/opt/asdf/libexec/asdf.sh)/../etc/bash_completion.d/asdf.bash
+        break
+    fi
+done
+
 if test $UID -eq 0; then
     prompt_color=31
 elif test -n "$GDMSESSION" -o `uname -s` = 'Darwin' || uname -a | grep -q Microsoft; then
@@ -99,10 +120,6 @@ done
 
 if test ! -z $INFLUX_HOST; then
     alias influx='influx ${INFLUX_HOST:+-host $INFLUX_HOST} ${INFLUX_DATABASE:+-database $INFLUX_DATABASE} -precision rfc3339'
-fi
-
-if type brew &>/dev/null && test -r $(brew --prefix)/etc/profile.d/bash_completion.sh; then
-  . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 if type minikube &>/dev/null; then
