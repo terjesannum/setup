@@ -321,3 +321,7 @@ read_secret() {
 for i in `seq 1 19`; do
     alias p$i="awk '{ print \$$i; }'"
 done
+
+jwt() {
+    echo $1 | jq -R 'split(".") | .[0],.[1] | @base64d | fromjson'
+}
