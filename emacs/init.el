@@ -294,6 +294,16 @@
     (let ((text (delete-and-extract-region begin end)))
       (insert (replace-regexp-in-string "\\+" " " (url-unhex-string text))))))
 
+(defun decode-timestamp (begin end)
+  "Decode timestamp (seconds since epoch) between BEGIN and END."
+  (interactive "r")
+  (let ((ts (buffer-substring-no-properties begin end)))
+    (if (string-match "^[0-9]+$" ts)
+        (progn
+          (delete-region begin end)
+          (insert (format-time-string "%F %T %z" (string-to-number ts))))
+      (error "not a timestamp"))))
+
 (defun shift-region (distance)
   "Shift region DISTANCE characters."
   (interactive "nDistance: ")
