@@ -122,6 +122,10 @@ if test ! -z $INFLUX_HOST; then
     alias influx='influx ${INFLUX_HOST:+-host $INFLUX_HOST} ${INFLUX_DATABASE:+-database $INFLUX_DATABASE} -precision rfc3339'
 fi
 
+if test -S /run/containerd/containerd.sock; then
+    export CONTAINER_RUNTIME_ENDPOINT=unix:///run/containerd/containerd.sock
+fi
+
 if type minikube &>/dev/null; then
     minikube-docker-env() {
         eval $(minikube docker-env)
@@ -180,6 +184,10 @@ if type kubectl &>/dev/null; then
       }
   fi
   alias ceph='kubectl exec -it -n rook-ceph $(kubectl get pod -n rook-ceph -l app=rook-ceph-tools -o jsonpath="{.items[0].metadata.name}") -- ceph'
+fi
+
+if type gcloud &>/dev/null; then
+    export CLOUDSDK_PYTHON_SITEPACKAGES=1
 fi
 
 if type helm &>/dev/null; then
