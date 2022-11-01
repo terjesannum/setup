@@ -159,8 +159,6 @@ if type kubectl &>/dev/null; then
   alias kd='kubectl --namespace default'
   alias ks='kubectl --namespace kube-system'
   alias kn='kubectl --namespace nais'
-  alias ki='kubectl --namespace istio-system'
-  alias kt='kubectl --namespace tpa'
   alias ka='kubectl --namespace aura'
   K_GET_ALL_EXCLUDE='(events|.*\.events\.k8s\.io|.*\.velero\.io|.*\.rook\.io)'
   k-get-all() {
@@ -209,8 +207,6 @@ if type _completion_loader &>/dev/null && test -r $HOME/lib/bash/github.com/comp
       complete -F _complete_alias kd
       complete -F _complete_alias ks
       complete -F _complete_alias kn
-      complete -F _complete_alias ki
-      complete -F _complete_alias kt
       complete -F _complete_alias ka
    fi
    if type kubectx &>/dev/null; then
