@@ -105,6 +105,7 @@ fi
 alias ls='ls --color=auto'
 
 alias cd..='cd ..'
+export CDPATH=.:..:$HOME/github.com
 
 if type shasum &>/dev/null; then
     type sha1sum &>/dev/null || alias sha1sum='shasum -a 1'
