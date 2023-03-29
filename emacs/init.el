@@ -349,6 +349,8 @@
 
 (add-hook 'kill-emacs-hook
           (lambda ()
+            (with-current-buffer (get-buffer "*scratch*")
+              (write-file (concat user-emacs-directory "/scratch")))
             (with-current-buffer (get-buffer "*Messages*")
               (write-file (concat user-emacs-directory "/messages")))))
 
