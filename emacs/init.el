@@ -152,6 +152,10 @@
                                (with-editor-cancel nil)
                              (with-editor-finish nil))))))
 (use-package nginx-mode)
+(use-package sql
+  :hook (sql-interactive-mode . (lambda ()
+                                  (setq sql-input-ring-file-name
+                                        (concat user-emacs-directory "/" "shell-history" "/" (format "%s" sql-product) ".sql")))))
 (use-package org
   :init (setq org-agenda-files '("~/org/"))
   :bind (("C-c a" . org-agenda)
