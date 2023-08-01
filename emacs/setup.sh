@@ -12,5 +12,4 @@ github_clone_or_pull https://github.com/terjesannum/emacs-gcloud-mode.git
 github_clone_or_pull https://github.com/terjesannum/emacs-kubectx-mode.git
 github_clone_or_pull https://github.com/terjesannum/emacs-influxdb-mode.git
 github_clone_or_pull https://github.com/terjesannum/emacs-shell.git
-github_clone_or_pull https://github.com/jwiegley/use-package.git
 github_clone_or_pull https://github.com/szermatt/emacs-bash-completion.git 8e9c20dbfe01d8bf6c61db231593623a201c75c6
