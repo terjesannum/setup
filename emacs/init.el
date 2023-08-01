@@ -120,9 +120,6 @@
   :after (flycheck)
   :config (flycheck-package-setup))
 (use-package broadcast)
-(use-package bash-completion
-  :commands 'bash-completion-dynamic-complete
-  :init (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete))
 (use-package exec-path-from-shell
   :defines exec-path-from-shell-check-startup-files
   :init (setq exec-path-from-shell-check-startup-files nil
@@ -234,6 +231,10 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
+
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
+(require 'bash-completion)
+(bash-completion-setup)
 
 (setq-default c-basic-offset 2
               js-indent-level 2
