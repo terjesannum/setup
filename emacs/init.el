@@ -136,10 +136,6 @@
               tramp-histfile-override t
               explicit-shell-file-name "sh"
               explicit-sh-args '("-l")))
-(use-package docker-tramp)
-(use-package kubernetes-tramp
-  :init (setq tramp-remote-shell-executable "sh")
-  :config (kubernetes-tramp-add-method))
 (use-package with-editor
   :hook (tramp-shell-started . with-editor-export-editor)
   :bind (:map with-editor-mode-map
