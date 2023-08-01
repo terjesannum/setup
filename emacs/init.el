@@ -35,11 +35,7 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
-(eval-when-compile
-  (add-to-list 'load-path (concat user-emacs-directory "/github.com/use-package"))
-  (require 'use-package)
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t))
+(setq use-package-always-ensure t)
 
 (use-package time
   :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M"
