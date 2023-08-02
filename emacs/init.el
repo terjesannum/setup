@@ -68,6 +68,7 @@
 (use-package window-number
   :config (window-number-mode 1))
 (use-package lsp-mode
+  :autoload lsp-organize-imports
   :commands (lsp lsp-deferred)
   :hook (go-mode . lsp-deferred))
 (use-package lsp-ui
@@ -79,6 +80,7 @@
 (use-package yasnippet
   :config (yas-global-mode 1))
 (use-package go-mode
+  :after (lsp-mode)
   :hook ((before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports)
          (go-mode . (lambda ()
