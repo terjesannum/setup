@@ -242,7 +242,7 @@ if test -n "$INSIDE_EMACS"; then
             ealias ff='find-file %* t'
         fi
         if type kubectl &>/dev/null; then
-            export PROMPT_COMMAND="emacsclient -e '(kubectx-mode-mode-line-update)' &>/dev/null"
+            export PROMPT_COMMAND="emacsclient -e '(kubectx-mode-line-update)' &>/dev/null"
         fi
     fi
 fi
