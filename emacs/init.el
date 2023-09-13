@@ -76,10 +76,13 @@
 (use-package company
   :config
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 1))
+  (setq company-minimum-prefix-length 1)
+  :bind (:map company-active-map ("M-<up>" . (lambda ()
+                                               (interactive)
+                                               (company-abort)
+                                               (copilot-complete)))))
 (use-package company-box
-  :hook (company-mode . company-box-mode)
-  :bind (:map company-active-map ("M-<up>" . company-abort)))
+  :hook (company-mode . company-box-mode))
 (use-package yasnippet
   :config (yas-global-mode 1))
 (use-package go-mode
