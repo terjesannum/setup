@@ -117,6 +117,8 @@
 (use-package flycheck-package
   :after (flycheck)
   :config (flycheck-package-setup))
+(use-package editorconfig
+  :config (editorconfig-mode 1))
 (use-package broadcast)
 (use-package exec-path-from-shell
   :defines exec-path-from-shell-check-startup-files
@@ -233,6 +235,9 @@
 (setq-default c-basic-offset 2
               js-indent-level 2
               indent-tabs-mode nil)
+
+(add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
+(require 'copilot)
 
 (prefer-coding-system 'utf-8)
 
