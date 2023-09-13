@@ -78,7 +78,8 @@
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1))
 (use-package company-box
-  :hook (company-mode . company-box-mode))
+  :hook (company-mode . company-box-mode)
+  :bind (:map company-active-map ("M-<up>" . company-abort)))
 (use-package yasnippet
   :config (yas-global-mode 1))
 (use-package go-mode
