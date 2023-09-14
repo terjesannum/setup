@@ -247,6 +247,7 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
 (require 'copilot)
+(define-key copilot-completion-map (kbd "M-<up>") 'copilot-clear-overlay)
 (define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)
 (define-key copilot-completion-map (kbd "M-<down>") 'copilot-accept-completion)
 (add-hook 'prog-mode-hook 'copilot-mode)
