@@ -30,12 +30,12 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 (let ((local-settings (expand-file-name (concat user-emacs-directory "/local.el"))))
   (when (file-exists-p local-settings)
     (load-library local-settings)))
-
-(setq use-package-always-ensure t)
 
 (use-package time
   :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M"
@@ -66,6 +66,7 @@
 (use-package restclient
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
+  :commands (window-number-mode)
   :config (window-number-mode 1))
 (use-package lsp-mode
   :autoload lsp-organize-imports
@@ -74,6 +75,7 @@
 (use-package lsp-ui
   :commands lsp-ui-mode)
 (use-package company
+  :commands (company-abort)
   :config
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1)
@@ -137,12 +139,13 @@
 (use-package auth-source
   :init (setq auth-source-save-behavior nil))
 (use-package tramp
-  :defines explicit-sh-args
+  :defines (explicit-sh-args tramp-histfile-override)
   :init (setq tramp-default-method "ssh"
               tramp-histfile-override t
               explicit-shell-file-name "sh"
               explicit-sh-args '("-l")))
 (use-package with-editor
+  :commands (with-editor-finish with-editor-cancel)
   :hook (tramp-shell-started . with-editor-export-editor)
   :bind (:map with-editor-mode-map
               ("C-x k" . (lambda ()
@@ -349,7 +352,7 @@
 (defvar ts-emacs-geometry nil "Emacs frame geometry: (width height x y).")
 
 (defun ts-emacs-set-frame-geometry (&optional geometry)
-  "Set Emacs frame geometry to defaults in `ts-emacs-geometry' or GEOMETRY if supplied."
+  "Set Emacs frame geometry to `ts-emacs-geometry' or GEOMETRY if supplied."
   (interactive)
   (let ((geometry-list (or geometry (and (functionp ts-emacs-geometry) (funcall ts-emacs-geometry)) ts-emacs-geometry)))
     (when (and window-system geometry-list)
