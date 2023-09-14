@@ -67,7 +67,7 @@
   :mode ("\\.rest\\'" . restclient-mode))
 (use-package window-number
   :commands (window-number-mode)
-  :config (window-number-mode 1))
+  :init (window-number-mode))
 (use-package lsp-mode
   :autoload lsp-organize-imports
   :commands (lsp lsp-deferred)
