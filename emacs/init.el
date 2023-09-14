@@ -250,6 +250,9 @@
 (define-key copilot-completion-map (kbd "M-<up>") 'copilot-clear-overlay)
 (define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)
 (define-key copilot-completion-map (kbd "M-<down>") 'copilot-accept-completion)
+(custom-set-faces
+   `(copilot-overlay-face ((t (:background "#000000" :foreground "#919191")))))
+
 (add-hook 'prog-mode-hook 'copilot-mode)
 
 (prefer-coding-system 'utf-8)
