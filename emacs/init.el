@@ -338,11 +338,13 @@
   (interactive)
   (shift-region -1))
 
-(defun set-selective-display-at-column ()
-  "Set selective display at current column."
+(defun toggle-selective-display-at-column ()
+  "Toggle selective display at current column."
   (interactive)
-  (set-selective-display (+ 1 (current-column))))
-(global-set-key (kbd "C-c $") 'set-selective-display-at-column)
+  (if selective-display
+      (set-selective-display nil)
+    (set-selective-display (+ 1 (current-column)))))
+(global-set-key (kbd "C-c $") 'toggle-selective-display-at-column)
 
 (server-start)
 
