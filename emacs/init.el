@@ -21,11 +21,17 @@
   )
 
 (setq inhibit-startup-message t)
-(menu-bar-mode -1)
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq visible-bell t)
 (setq save-abbrevs 'silently)
+(setq-default indent-tabs-mode nil)
+(defalias 'yes-or-no-p 'y-or-n-p)
 (add-to-list 'same-window-regexps (regexp-quote "*Buffer List*"))
 (add-to-list 'same-window-regexps (regexp-quote "*Input History*"))
+(menu-bar-mode -1)
+(prefer-coding-system 'utf-8)
+(line-number-mode 1)
+(column-number-mode 1)
+(global-font-lock-mode t)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -241,10 +247,6 @@
 (require 'bash-completion)
 (bash-completion-setup)
 
-(setq-default c-basic-offset 2
-              js-indent-level 2
-              indent-tabs-mode nil)
-
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
 (require 'copilot)
 (define-key copilot-completion-map (kbd "M-<up>") (lambda ()
@@ -259,10 +261,7 @@
 (define-key copilot-completion-map (kbd "M-S-<right>") 'copilot-next-completion)
 (custom-set-faces
    `(copilot-overlay-face ((t (:foreground "#808080")))))
-
 (add-hook 'prog-mode-hook 'copilot-mode)
-
-(prefer-coding-system 'utf-8)
 
 (defvar user-temporary-file-directory
   (expand-file-name (concat user-emacs-directory "/" "autosaves" "/")))
@@ -300,19 +299,6 @@
 (global-set-key (kbd "M-+") 'text-scale-adjust)
 (global-set-key (kbd "M--") 'text-scale-adjust)
 (global-set-key (kbd "M-0") 'text-scale-adjust)
-
-(setq visible-bell t)
-
-(line-number-mode 1)
-(column-number-mode 1)
-
-(global-font-lock-mode t)
-
-(defun spook-string ()
-  "Generate string test data."
-  (mapconcat 'identity
-   (delete "" (split-string (with-temp-buffer (spook) (buffer-string)) "\n"))
-   " "))
 
 (defun url-decode-region (begin end)
   "URL decode text between BEGIN and END."
