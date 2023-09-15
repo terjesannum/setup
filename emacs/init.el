@@ -247,7 +247,12 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
 (require 'copilot)
-(define-key copilot-completion-map (kbd "M-<up>") 'copilot-clear-overlay)
+(define-key copilot-completion-map (kbd "M-<up>") (lambda ()
+                                                    (interactive)
+                                                    (if (not (and (boundp 'company-prefix) company-prefix))
+                                                        (copilot-clear-overlay)
+                                                      (company-abort)
+                                                      (copilot-complete))))
 (define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)
 (define-key copilot-completion-map (kbd "M-<down>") 'copilot-accept-completion)
 (custom-set-faces
