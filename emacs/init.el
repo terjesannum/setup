@@ -255,6 +255,8 @@
                                                       (copilot-complete))))
 (define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)
 (define-key copilot-completion-map (kbd "M-<down>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "M-S-<left>") 'copilot-previous-completion)
+(define-key copilot-completion-map (kbd "M-S-<right>") 'copilot-next-completion)
 (custom-set-faces
    `(copilot-overlay-face ((t (:foreground "#808080")))))
 
