@@ -194,11 +194,11 @@
   (setq helm-command-prefix-key "C-c h")
   :custom-face
   (helm-source-header ((t (:background "#008b00"))))
-  :bind (nil
-         :map global-map
-         ("C-c C-y" . helm-show-kill-ring)
-         :map shell-mode-map
-         ("C-c C-l" . helm-comint-input-ring)))
+  :bind (:map global-map
+              ("C-c C-y" . helm-show-kill-ring)))
+(use-package helm-comint
+  :bind (:map shell-mode-map
+              ("C-c C-l" . helm-comint-input-ring)))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
