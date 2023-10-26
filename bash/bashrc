@@ -126,6 +126,7 @@ fi
 
 if test -S /run/containerd/containerd.sock; then
     export CONTAINER_RUNTIME_ENDPOINT=unix:///run/containerd/containerd.sock
+    export CONTAINERD_NAMESPACE=k8s.io
 fi
 
 if type minikube &>/dev/null; then
