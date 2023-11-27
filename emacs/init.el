@@ -21,6 +21,7 @@
   )
 
 (setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
 (setq visible-bell t)
 (setq save-abbrevs 'silently)
 (setq-default indent-tabs-mode nil)
