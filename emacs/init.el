@@ -261,7 +261,7 @@
 (define-key copilot-completion-map (kbd "M-S-<left>") 'copilot-previous-completion)
 (define-key copilot-completion-map (kbd "M-S-<right>") 'copilot-next-completion)
 (custom-set-faces
-   `(copilot-overlay-face ((t (:foreground "#808080")))))
+   `(copilot-overlay-face ((t (:foreground "#c09000")))))
 (add-hook 'prog-mode-hook 'copilot-mode)
 
 (defvar user-temporary-file-directory
