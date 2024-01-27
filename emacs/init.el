@@ -249,6 +249,8 @@
 (bash-completion-setup)
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
+(setq copilot-indent-warning-suppress t)
+(setq copilot-indent-offset-warning-disable t)
 (require 'copilot)
 (define-key copilot-completion-map (kbd "M-<up>") (lambda ()
                                                     (interactive)
