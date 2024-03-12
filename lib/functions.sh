@@ -1,7 +1,7 @@
 function github_clone_or_pull {
-    repo=$1
-    commit=$2
-    dir=$HOME/.emacs.d/github.com
+    dir=$1
+    repo=$2
+    commit=$3
     mkdir -p $dir
     repodir=$dir/$(basename $repo .git)
     if test -d $repodir; then
