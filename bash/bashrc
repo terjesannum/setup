@@ -15,15 +15,16 @@ add_path() {
     PATH="$dir:$PATH"               # add to start
 }
 
+
 for dir in \
     $HOME/bin \
     $HOME/.krew/bin \
-    /usr/local/opt/gnu-sed/libexec/gnubin \
-    /usr/local/opt/coreutils/libexec/gnubin \
-    /usr/local/opt/gnu-tar/libexec/gnubin \
-    /usr/local/opt/libpq/bin \
-    /usr/local/opt/unzip/bin \
-    /usr/local/go/bin \
+    /opt/homebrew/bin \
+    /opt/homebrew/opt/gnu-sed/libexec/gnubin \
+    /opt/homebrew/opt/coreutils/libexec/gnubin \
+    /opt/homebrew/opt/gnu-tar/libexec/gnubin \
+    /opt/homebrew/opt/libpq/bin \
+    /opt/homebrew/opt/unzip/bin \
     $HOME/go/bin \
     ; do
     test -d $dir && add_path $dir
