@@ -5,10 +5,12 @@ Misc setup
 ## macOS prerequisites
 
 ```sh
+brew install coreutils
 brew install gnu-sed
 brew install gnu-tar
-brew install coreutils
+brew install grep
 brew install bash
+brew install git
 sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
 chsh -s /usr/local/bin/bash
 brew install bash-completion@2
