@@ -11,8 +11,8 @@ brew install gnu-tar
 brew install grep
 brew install bash
 brew install git
-sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
-chsh -s /usr/local/bin/bash
+sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"
+chsh -s $(brew --prefix)/bin/bash
 brew install bash-completion@2
 ```
 
