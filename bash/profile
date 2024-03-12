@@ -1,3 +1,4 @@
+test "$(basename $0)" = "sh" && test -x /opt/homebrew/bin/bash && exec /opt/homebrew/bin/bash -l
 test "$(basename $0)" = "sh" && test -x /usr/local/bin/bash && exec /usr/local/bin/bash -l
 test "$(basename $0)" = "sh" && test -x /bin/bash && exec /bin/bash -l
 if test -n "$BASH" -a -r $HOME/.bashrc; then
