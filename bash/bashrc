@@ -25,6 +25,7 @@ for dir in \
     /opt/homebrew/opt/gnu-tar/libexec/gnubin \
     /opt/homebrew/opt/libpq/bin \
     /opt/homebrew/opt/unzip/bin \
+    /opt/homebrew//share/google-cloud-sdk/bin \
     $HOME/go/bin \
     ; do
     test -d $dir && add_path $dir
