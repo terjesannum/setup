@@ -78,7 +78,8 @@
 (use-package lsp-mode
   :autoload lsp-organize-imports
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred))
+  :hook ((go-mode . lsp-deferred)
+         (terraform-mode . lsp-deferred)))
 (use-package lsp-ui
   :commands lsp-ui-mode)
 (use-package company
@@ -112,6 +113,8 @@
 (use-package smart-shift
   :hook (yaml-mode . smart-shift-mode))
 (use-package terraform-mode)
+(use-package company-terraform
+  :init (company-terraform-init))
 (use-package highlight-indentation)
 (use-package copy-as-format
   :bind (("C-c w s" . copy-as-format-slack)
