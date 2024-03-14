@@ -132,33 +132,6 @@ if test -S /run/containerd/containerd.sock; then
     export CONTAINERD_NAMESPACE=k8s.io
 fi
 
-if type minikube &>/dev/null; then
-    minikube-docker-env() {
-        eval $(minikube docker-env)
-        if test -n "$INSIDE_EMACS"; then
-            type emacsclient > /dev/null 2>&1 && emacsclient -e '(minikube-docker-env)' > /dev/null
-        fi
-    }
-    minikube-start() {
-        minikube start $@
-        if test -d $HOME/.ssh/config.d; then
-            echo "Host minikube" > $HOME/.ssh/config.d/minikube
-            echo "     Hostname $(minikube ip)" >> $HOME/.ssh/config.d/minikube
-            echo "     IdentitiesOnly yes" >> $HOME/.ssh/config.d/minikube
-            echo "     StrictHostKeyChecking no" >> $HOME/.ssh/config.d/minikube
-            echo "     User docker" >> $HOME/.ssh/config.d/minikube
-            echo "     IdentityFile $HOME/.minikube/machines/minikube/id_rsa" >> $HOME/.ssh/config.d/minikube
-        fi
-        minikube-docker-env
-    }
-    minikube-start-docker() {
-        minikube-start --no-kubernetes
-    }
-    minikube-mount() {
-        minikube mount --ip=$(minikube ip | sed -E 's/[0-9]+$//')1 $@
-    }
-fi
-
 if type kubectl &>/dev/null; then
   . <(kubectl completion bash)
   alias k=kubectl
