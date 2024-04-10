@@ -282,7 +282,7 @@
       `((".*" ,user-temporary-file-directory t)))
 
 
-(cond ((eq window-system 'x) (when (getenv "VDI")
+(cond ((eq window-system 'x) (progn
                                (defvar x-super-keysym) ; defined on emacs with x support
                                (setq x-super-keysym 'meta)))
       ((eq window-system 'ns) (progn
