@@ -370,11 +370,13 @@
 
 (add-hook 'kill-emacs-hook
           (lambda ()
-            (with-current-buffer (get-buffer "*scratch*")
-              (when (buffer-modified-p)
-                (write-file (concat user-emacs-directory "/scratch"))))
-            (with-current-buffer (get-buffer "*Messages*")
-              (write-file (concat user-emacs-directory "/messages")))))
+            (if-let ((s (get-buffer "*scratch*")))
+                (with-current-buffer s
+                  (when (buffer-modified-p)
+                    (write-file (concat user-emacs-directory "/scratch")))))
+            (if-let ((m (get-buffer "*Messages*")))
+                (with-current-buffer m
+                  (write-file (concat user-emacs-directory "/messages"))))))
 
 (defun show-certificate-region ()
   "Show certificate in region as text."
