@@ -19,6 +19,7 @@ add_path() {
 for dir in \
     $HOME/bin \
     $HOME/.krew/bin \
+    $HOME/.cargo/bin \
     /opt/homebrew/bin \
     /opt/homebrew/opt/gnu-sed/libexec/gnubin \
     /opt/homebrew/opt/coreutils/libexec/gnubin \
