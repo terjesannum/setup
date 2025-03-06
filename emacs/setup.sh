@@ -8,7 +8,6 @@ ln -fs $DIR/init.el $HOME/.emacs.d/init.el
 
 INSTDIR=$HOME/.emacs.d/github.com
 
-github_clone_or_pull $INSTDIR https://github.com/terjesannum/cyberpunk-theme.el.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/org-mac-iCal.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-gcloud-mode.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-kubectx-mode.git

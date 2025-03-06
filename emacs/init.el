@@ -7,8 +7,6 @@
 
 (when window-system
   (tool-bar-mode -1)
-  (add-to-list 'custom-theme-load-path (concat user-emacs-directory "/github.com/cyberpunk-theme.el"))
-  (load-theme 'cyberpunk t)
   (custom-set-faces
    `(ansi-color-black ((t (:foreground "#000000"))))
    `(ansi-color-red ((t (:foreground "#ff4500"))))
@@ -44,6 +42,9 @@
   (when (file-exists-p local-settings)
     (load-library local-settings)))
 
+(use-package cyberpunk-theme
+  :hook (after-init . (lambda ()
+                        (load-theme 'cyberpunk t))))
 (use-package time
   :init (setq display-time-format "%a/%V %Y-%m-%d %H:%M"
               display-time-mail-file 'none)
