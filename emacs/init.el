@@ -355,7 +355,22 @@
 
 (server-start)
 
-(defvar ts-emacs-geometry nil "Emacs frame geometry: (width height x y).")
+(defvar ts-emacs-geometry
+      '(lambda ()
+         (when window-system
+           (let* ((monitor-geometry (caar (last (display-monitor-attributes-list))))
+                  (monitor-position-x (nth 1 monitor-geometry))
+                  (monitor-position-y (nth 2 monitor-geometry))
+                  (monitor-height (nth 4 monitor-geometry)))
+             (cond
+              ((= monitor-height 1600)
+               `(210 110 ,(+ monitor-position-x 50) ,monitor-position-y))
+              ((= monitor-height 1440)
+               `(210 98 ,(+ monitor-position-x 50) ,monitor-position-y))
+              ((= monitor-height 1120) ; Macbook 16"
+               `(210 75 0 0))
+              (t '(210 70 0 0))))))
+      "Emacs frame geometry: (width height x y).")
 
 (defun ts-emacs-set-frame-geometry (&optional geometry)
   "Set Emacs frame geometry to `ts-emacs-geometry' or GEOMETRY if supplied."
