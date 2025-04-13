@@ -130,12 +130,8 @@
   :config (google-this-mode 1))
 (use-package browse-url
   :bind (("C-c / ." . browse-url)))
-(use-package flycheck
-  :init (setq flycheck-emacs-lisp-load-path 'inherit)
-  :config (global-flycheck-mode))
-(use-package flycheck-package
-  :after (flycheck)
-  :config (flycheck-package-setup))
+(use-package flymake
+  :hook (prog-mode . flymake-mode))
 (use-package editorconfig
   :config (editorconfig-mode 1))
 (use-package broadcast)
