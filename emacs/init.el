@@ -131,7 +131,9 @@
 (use-package browse-url
   :bind (("C-c / ." . browse-url)))
 (use-package flymake
-  :hook (prog-mode . flymake-mode))
+  :hook (prog-mode . flymake-mode)
+  :custom-face
+  (flymake-error ((t (:foreground "#ff0000")))))
 (use-package editorconfig
   :config (editorconfig-mode 1))
 (use-package broadcast)
