@@ -167,6 +167,13 @@
   :hook (sql-interactive-mode . (lambda ()
                                   (setq sql-input-ring-file-name
                                         (concat user-emacs-directory "/" "shell-history" "/" (format "%s" sql-product) ".sql")))))
+(use-package sqlite-mode
+  :config
+  (defun sqlite-view-file-magically ()
+    (let ((file-name buffer-file-name))
+      (kill-current-buffer)
+      (sqlite-mode-open-file file-name)))
+  (add-to-list 'magic-mode-alist '("SQLite format 3\x00" . sqlite-view-file-magically)))
 (use-package org
   :init (setq org-agenda-files '("~/org/"))
   :bind (("C-c a" . org-agenda)
