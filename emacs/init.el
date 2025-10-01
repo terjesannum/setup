@@ -174,6 +174,8 @@
       (kill-current-buffer)
       (sqlite-mode-open-file file-name)))
   (add-to-list 'magic-mode-alist '("SQLite format 3\x00" . sqlite-view-file-magically)))
+(use-package sqlite-mode-extras
+  :hook ((sqlite-mode . sqlite-extras-minor-mode)))
 (use-package org
   :init (setq org-agenda-files '("~/org/"))
   :bind (("C-c a" . org-agenda)
