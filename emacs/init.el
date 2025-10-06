@@ -211,6 +211,10 @@
 (use-package helm-comint
   :bind (:map shell-mode-map
               ("C-c C-l" . helm-comint-input-ring)))
+(use-package gptel
+  :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
+                gptel-model 'gpt-4o)
+  :hook (gptel-post-response . gptel-end-of-response))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
