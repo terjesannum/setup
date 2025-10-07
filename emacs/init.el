@@ -216,16 +216,17 @@
 (use-package copilot
   :config (setq copilot-indent-warning-suppress t
                 copilot-indent-offset-warning-disable t)
-  :bind (("M-<up>" . (lambda ()
-                       (interactive)
-                       (if (not (and (boundp 'company-prefix) company-prefix))
-                           (copilot-clear-overlay)
-                         (company-abort)
-                         (copilot-complete))))
-         ("M-<right>" . copilot-accept-completion-by-word)
-         ("M-<down>" . copilot-accept-completion)
-         ("M-S-<left>" . copilot-previous-completion)
-         ("M-S-<right>" . copilot-next-completion))
+  :bind (:map copilot-completion-map
+              ("M-<up>" . (lambda ()
+                            (interactive)
+                            (if (not (and (boundp 'company-prefix) company-prefix))
+                                (copilot-clear-overlay)
+                              (company-abort)
+                              (copilot-complete))))
+              ("M-<right>" . copilot-accept-completion-by-word)
+              ("M-<down>" . copilot-accept-completion)
+              ("M-S-<left>" . copilot-previous-completion)
+              ("M-S-<right>" . copilot-next-completion))
   :custom-face (copilot-overlay-face ((t (:foreground "#c09000"))))
   :hook (prog-mode . copilot-mode))
 (use-package gptel
