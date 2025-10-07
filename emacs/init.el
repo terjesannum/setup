@@ -211,6 +211,21 @@
 (use-package helm-comint
   :bind (:map shell-mode-map
               ("C-c C-l" . helm-comint-input-ring)))
+(use-package copilot
+  :config (setq copilot-indent-warning-suppress t
+                copilot-indent-offset-warning-disable t)
+  :bind (("M-<up>" . (lambda ()
+                       (interactive)
+                       (if (not (and (boundp 'company-prefix) company-prefix))
+                           (copilot-clear-overlay)
+                         (company-abort)
+                         (copilot-complete))))
+         ("M-<right>" . copilot-accept-completion-by-word)
+         ("M-<down>" . copilot-accept-completion)
+         ("M-S-<left>" . copilot-previous-completion)
+         ("M-S-<right>" . copilot-next-completion))
+  :custom-face (copilot-overlay-face ((t (:foreground "#c09000"))))
+  :hook (prog-mode . copilot-mode))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
                 gptel-model 'gpt-4o)
@@ -262,24 +277,6 @@
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
 (require 'bash-completion)
 (bash-completion-setup)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/copilot.el"))
-(setq copilot-indent-warning-suppress t)
-(setq copilot-indent-offset-warning-disable t)
-(require 'copilot)
-(define-key copilot-completion-map (kbd "M-<up>") (lambda ()
-                                                    (interactive)
-                                                    (if (not (and (boundp 'company-prefix) company-prefix))
-                                                        (copilot-clear-overlay)
-                                                      (company-abort)
-                                                      (copilot-complete))))
-(define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)
-(define-key copilot-completion-map (kbd "M-<down>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "M-S-<left>") 'copilot-previous-completion)
-(define-key copilot-completion-map (kbd "M-S-<right>") 'copilot-next-completion)
-(custom-set-faces
-   `(copilot-overlay-face ((t (:foreground "#c09000")))))
-(add-hook 'prog-mode-hook 'copilot-mode)
 
 (defvar user-temporary-file-directory
   (expand-file-name (concat user-emacs-directory "/" "autosaves" "/")))

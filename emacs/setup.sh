@@ -14,4 +14,3 @@ github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-kubectx-mode.
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-influxdb-mode.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-shell.git
 github_clone_or_pull $INSTDIR https://github.com/szermatt/emacs-bash-completion.git
-github_clone_or_pull $INSTDIR https://github.com/copilot-emacs/copilot.el.git
