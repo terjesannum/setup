@@ -162,6 +162,8 @@
                            (if (buffer-modified-p)
                                (with-editor-cancel nil)
                              (with-editor-finish nil))))))
+(use-package bash-completion
+  :init (bash-completion-setup))
 (use-package nginx-mode)
 (use-package sql
   :hook (sql-interactive-mode . (lambda ()
@@ -273,10 +275,6 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-shell"))
 (require 'emacs-shell)
-
-(add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-bash-completion"))
-(require 'bash-completion)
-(bash-completion-setup)
 
 (defvar user-temporary-file-directory
   (expand-file-name (concat user-emacs-directory "/" "autosaves" "/")))
