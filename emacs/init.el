@@ -231,7 +231,7 @@
   :hook (prog-mode . copilot-mode))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
-                gptel-model 'gpt-4o)
+                gptel-model 'gpt-5)
   :hook (gptel-post-response . gptel-end-of-response))
 
 (when (eq system-type 'darwin)
@@ -410,3 +410,4 @@
 (load custom-file :noerror)
 
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)
