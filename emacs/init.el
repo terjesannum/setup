@@ -319,7 +319,14 @@
   (interactive "r")
   (save-excursion
     (let ((text (delete-and-extract-region begin end)))
-      (insert (replace-regexp-in-string "\\+" " " (url-unhex-string text))))))
+      (insert (url-unhex-string (replace-regexp-in-string "\\+" " " text))))))
+
+(defun url-encode-region (begin end)
+  "URL encode text between BEGIN and END."
+  (interactive "r")
+  (save-excursion
+    (let ((text (delete-and-extract-region begin end)))
+      (insert (url-hexify-string text)))))
 
 (defun decode-timestamp (begin end)
   "Decode timestamp (seconds since epoch) between BEGIN and END."
