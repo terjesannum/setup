@@ -231,7 +231,7 @@
   :hook (prog-mode . copilot-mode))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
-                gptel-model 'gpt-5)
+                gptel-model 'gpt-5.2)
   :hook (gptel-post-response . gptel-end-of-response))
 
 (when (eq system-type 'darwin)
