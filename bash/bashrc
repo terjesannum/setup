@@ -65,13 +65,13 @@ fi
 __prompt_exit_code() {
     local r=$?
     if test "$r" = "0"; then
-        echo -e "\\e[0;32m[0]\\e[m"
+        echo -e "\033[0;32m[0]\033[m"
     else
-        echo -e "\\e[0;31m[$r]\\e[m"
+        echo -e "\033[0;31m[$r]\033[m"
     fi
 }
 
-base_prompt="\e[0;33m[\t]\e[m\$(__prompt_exit_code)\$(test \$(jobs -p | wc -l) -gt 0 && echo \*) \\e[0;${prompt_color}m\u@\h\e[m \e[0;33m\w\e[m"
+base_prompt="\033[0;33m[\t]\033[m\$(__prompt_exit_code)\$(test \$(jobs -p | wc -l) -gt 0 && echo \*) \033[0;${prompt_color}m\u@\h\033[m \033[0;33m\w\033[m"
 PS1="${base_prompt}\\n\\\$ "
 PS2="> "
 
@@ -93,7 +93,7 @@ if test -n "$GIT_PROMPT"; then
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
   GIT_PS1_SHOWUPSTREAM=auto
-  PS1="${base_prompt}\$(__git_ps1 \" \\e[${prompt_color}m(%s)\")\\e[m\\n\\\$ "
+  PS1="${base_prompt}\$(__git_ps1 \" \033[${prompt_color}m(%s)\")\033[m\\n\\\$ "
 fi
 
 export LC_CTYPE=en_US.UTF-8
