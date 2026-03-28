@@ -24,6 +24,7 @@ for dir in \
     /opt/homebrew/opt/gnu-sed/libexec/gnubin \
     /opt/homebrew/opt/coreutils/libexec/gnubin \
     /opt/homebrew/opt/gnu-tar/libexec/gnubin \
+    /opt/homebrew/opt/findutils/libexec/gnubin \
     /opt/homebrew/opt/libpq/bin \
     /opt/homebrew/opt/unzip/bin \
     /opt/homebrew//share/google-cloud-sdk/bin \
