@@ -234,7 +234,8 @@
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command '("cplt" "-q" "-y" "--" "--acp")
-        agent-shell-github-default-model-id "claude-opus-4.7")
+        agent-shell-github-default-model-id "claude-opus-4.7"
+        agent-shell-context-sources '(files))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
   :bind (:map agent-shell-mode-map
               ("RET" . newline)
