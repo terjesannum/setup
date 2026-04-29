@@ -237,7 +237,7 @@
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
-                gptel-model 'gpt-5.2)
+                gptel-model 'gpt-5.4)
   :hook (gptel-post-response . gptel-end-of-response))
 
 (when (eq system-type 'darwin)
