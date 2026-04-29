@@ -231,7 +231,8 @@
   :hook (prog-mode . copilot-mode))
 (use-package agent-shell
   :config
-  (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir)
+  (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
+        agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
