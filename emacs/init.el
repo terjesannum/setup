@@ -232,7 +232,8 @@
 (use-package agent-shell
   :config
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
-        agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config))
+        agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
+        agent-shell-github-acp-command '("cplt" "-q" "-y" "--" "--acp"))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
