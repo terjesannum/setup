@@ -229,6 +229,10 @@
               ("M-S-<right>" . copilot-next-completion))
   :custom-face (copilot-overlay-face ((t (:foreground "#c09000"))))
   :hook (prog-mode . copilot-mode))
+(use-package agent-shell
+  :config
+  (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir)
+  (advice-add 'agent-shell--ensure-gitignore :override #'ignore))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
                 gptel-model 'gpt-5.2)
@@ -393,6 +397,11 @@
     (when (and window-system geometry-list)
       (set-frame-position (selected-frame) (nth 2 geometry-list) (nth 3 geometry-list))
       (set-frame-size (selected-frame) (nth 0 geometry-list) (nth 1 geometry-list)))))
+
+(defun ts-agent-shell-dir (subdir)
+  "Store all agent shell files in .emacs/agent-shell/SUBDIR."
+  (let ((sanitized (replace-regexp-in-string "/" "!" (string-remove-suffix "/" (agent-shell-cwd)))))
+    (expand-file-name subdir (concat user-emacs-directory "agent-shell/" sanitized))))
 
 (global-set-key (kbd "C-S-l") 'ts-emacs-set-frame-geometry)
 
