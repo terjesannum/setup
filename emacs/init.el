@@ -234,7 +234,10 @@
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command '("cplt" "-q" "-y" "--" "--acp"))
-  (advice-add 'agent-shell--ensure-gitignore :override #'ignore))
+  (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
+  :bind (:map agent-shell-mode-map
+              ("RET" . newline)
+              ("C-c RET" . shell-maker-submit)))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
                 gptel-model 'gpt-5.4)
