@@ -242,8 +242,7 @@
               ("C-c RET" . shell-maker-submit)))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
-                gptel-model 'gpt-5.4)
-  :hook (gptel-post-response . gptel-end-of-response))
+                gptel-model 'gpt-5.4))
 
 (when (eq system-type 'darwin)
   (require 'org-agenda)
