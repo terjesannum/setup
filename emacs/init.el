@@ -211,6 +211,7 @@
   :bind (:map global-map
               ("C-c C-y" . helm-show-kill-ring)))
 (use-package helm-comint
+  
   :bind (:map shell-mode-map
               ("C-c C-l" . helm-comint-input-ring)))
 (use-package copilot
@@ -234,7 +235,7 @@
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command '("cplt" "-q" "-y" "--" "--acp")
-        agent-shell-github-default-model-id "claude-opus-4.7"
+        agent-shell-github-default-model-id "claude-opus-4.8"
         agent-shell-context-sources '(files))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
   :bind (:map agent-shell-mode-map
