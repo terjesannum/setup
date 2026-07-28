@@ -240,6 +240,7 @@
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
   :custom-face
   (agent-shell-markdown-table-zebra ((t (:background "#8b8b00"))))
+  (agent-shell-markdown-inline-code ((t (:foreground "#224EF0"))))
   :bind (:map agent-shell-mode-map
               ("RET" . newline)
               ("C-c RET" . shell-maker-submit)))
