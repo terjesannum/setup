@@ -241,8 +241,8 @@
         agent-shell-context-sources '(files))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
   :custom-face
-  (agent-shell-markdown-table-zebra ((t (:background "#8b8b00"))))
-  (agent-shell-markdown-inline-code ((t (:foreground "#224EF0"))))
+  (agent-shell-markdown-table-zebra ((t (:background "#3b3b00"))))
+  (agent-shell-markdown-inline-code ((t (:foreground "#426EF0"))))
   :bind (:map agent-shell-mode-map
               ("RET" . newline)
               ("C-c RET" . shell-maker-submit)))
