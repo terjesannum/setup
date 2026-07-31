@@ -236,7 +236,9 @@
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command (append '("cplt" "-q" "-y" "--" "--acp")
                                                (mapcan (lambda (tool) (list "--allow-tool" tool))
-                                                       ts-agent-shell-allowed-tools))
+                                                       ts-agent-shell-allowed-tools)
+                                               (mapcan (lambda (tool) (list "--add-dir" tool))
+                                                       ts-agent-shell-allowed-dirs))
         agent-shell-github-default-model-id "claude-opus-4.8"
         agent-shell-context-sources '(files))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
