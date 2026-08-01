@@ -239,7 +239,7 @@
                                                        ts-agent-shell-allowed-tools)
                                                (mapcan (lambda (tool) (list "--add-dir" tool))
                                                        ts-agent-shell-allowed-dirs))
-        agent-shell-github-default-model-id "claude-opus-4.8"
+        agent-shell-github-default-model-id "claude-opus-5"
         agent-shell-context-sources '(files))
   (advice-add 'agent-shell--ensure-gitignore :override #'ignore)
   :custom-face
