@@ -235,9 +235,13 @@
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command (append '("cplt" "-q" "-y" "--" "--acp")
+                                               (mapcan (lambda (url) (list "--allow-url" url))
+                                                       (with-temp-buffer
+                                                         (insert-file-contents (expand-file-name "~/.config/cplt/allowed-domains.txt"))
+                                                         (split-string (buffer-string) "\n" t)))
                                                (mapcan (lambda (tool) (list "--allow-tool" tool))
                                                        ts-agent-shell-allowed-tools)
-                                               (mapcan (lambda (tool) (list "--add-dir" tool))
+                                               (mapcan (lambda (dir) (list "--add-dir" dir))
                                                        ts-agent-shell-allowed-dirs))
         agent-shell-github-default-model-id "claude-opus-5"
         agent-shell-context-sources '(files))
