@@ -235,7 +235,10 @@
   (setq agent-shell-dot-subdir-function #'ts-agent-shell-dir
         agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)
         agent-shell-github-acp-command (let ((url-whitelist (expand-file-name "~/.config/cplt/allowed-domains.txt")))
-                                         (append '("cplt" "-q" "-y" "--" "--acp")
+                                         (append '("cplt" "-q" "-y")
+                                                 (mapcan (lambda (dir) (list "--allow-read" dir))
+                                                         ts-agent-shell-sandbox-allowed-dirs)
+                                                 '("--" "--acp")
                                                  (when (file-exists-p url-whitelist)
                                                    (mapcan (lambda (url) (list "--allow-url" url))
                                                            (with-temp-buffer
