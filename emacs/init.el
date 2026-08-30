@@ -399,10 +399,10 @@
 (defvar ts-emacs-geometry
       '(lambda ()
          (when window-system
-           (let* ((monitor-geometry (caar (last (display-monitor-attributes-list))))
-                  (monitor-position-x (nth 1 monitor-geometry))
-                  (monitor-position-y (nth 2 monitor-geometry))
-                  (monitor-height (nth 4 monitor-geometry)))
+           (let* ((monitor-geometry (alist-get 'geometry (car (last (display-monitor-attributes-list)))))
+                  (monitor-position-x (nth 0 monitor-geometry))
+                  (monitor-position-y (nth 1 monitor-geometry))
+                  (monitor-height (nth 3 monitor-geometry)))
              (cond
               ((= monitor-height 1600)
                `(210 110 ,(+ monitor-position-x 50) ,monitor-position-y))
