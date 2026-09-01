@@ -12,3 +12,4 @@ github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-gcloud-mode.g
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-kubectx-mode.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-influxdb-mode.git
 github_clone_or_pull $INSTDIR https://github.com/terjesannum/emacs-shell.git
+github_clone_or_pull $INSTDIR https://github.com/terjesannum/cyberpunk-theme.el.git lexical-binding
