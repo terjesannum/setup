@@ -259,6 +259,8 @@
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
                 gptel-model 'gpt-5.6-terra))
+(use-package eglot
+  :hook (prog-mode . eglot-ensure))
 
 (add-to-list 'load-path (concat user-emacs-directory "/github.com/emacs-gcloud-mode"))
 (require 'gcloud-mode)
