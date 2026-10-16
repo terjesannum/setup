@@ -406,11 +406,11 @@
 
 (add-hook 'kill-emacs-hook
           (lambda ()
-            (if-let ((s (get-buffer "*scratch*")))
+            (if-let* ((s (get-buffer "*scratch*")))
                 (with-current-buffer s
                   (when (buffer-modified-p)
                     (write-file (concat user-emacs-directory "/scratch")))))
-            (if-let ((m (get-buffer "*Messages*")))
+            (if-let* ((m (get-buffer "*Messages*")))
                 (with-current-buffer m
                   (write-file (concat user-emacs-directory "/messages"))))))
 
