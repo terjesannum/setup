@@ -258,7 +258,7 @@
               ("C-c RET" . shell-maker-submit)))
 (use-package gptel
   :config (setq gptel-backend (gptel-make-gh-copilot "Copilot")
-                gptel-model 'gpt-5.6-terra))
+                gptel-model 'claude-opus-5.5))
 (use-package eglot
   :hook (prog-mode . eglot-ensure))
 
